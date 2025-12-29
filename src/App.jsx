@@ -19,7 +19,7 @@ const BRAND = {
   name: "The World Is My Playground",
   tagline: "Every detail. Every destination.",
   phone: "(248) 284-3071",
-  email: "lisa@worldismyplayground.com",
+  email: "lisa@worldismyplayground.us",
   location: "Detroit, MI",
   cta: "Plan My Trip",
 };
