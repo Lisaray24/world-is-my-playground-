@@ -524,35 +524,55 @@ async function onSubmit(e) {
                   </div>
                 </div>
               ) : (
-                <form
-  onSubmit={onSubmit}
-  className="grid gap-3"
-> <input type="hidden" name="_subject" value="New Trip Request — The World Is My Playground" />
- <Input name="name" placeholder="Your name" required />
-<Input name="email" placeholder="Email" type="email" />
-<Input name="phone" placeholder="Phone (optional)" />
-<Input name="budget" placeholder="Budget (per person)" />
-<Input name="dates" placeholder="Target dates (e.g., March 10–17)" />
-<Textarea name="details" placeholder="Where do you want to go? ..." />
+ <form onSubmit={onSubmit} className="grid gap-3">
+  <Input
+    name="name"
+    placeholder="Your name"
+    value={form.name}
+    onChange={(e) => setForm({ ...form, name: e.target.value })}
+    required
+  />
 
+  <Input
+    name="email"
+    type="email"
+    placeholder="Email"
+    value={form.email}
+    onChange={(e) => setForm({ ...form, email: e.target.value })}
+    required
+  />
 
-                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                    <Input placeholder="Your name" value={form.name} onChange={(e) => setForm((s) => ({ ...s, name: e.target.value }))} required />
-                    <Input placeholder="Email" type="email" value={form.email} onChange={(e) => setForm((s) => ({ ...s, email: e.target.value }))} required />
-                  </div>
+  <Input
+    name="phone"
+    placeholder="Phone (optional)"
+    value={form.phone}
+    onChange={(e) => setForm({ ...form, phone: e.target.value })}
+  />
 
-                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                    <Input placeholder="Phone (optional)" value={form.phone} onChange={(e) => setForm((s) => ({ ...s, phone: e.target.value }))} />
-                    <Input placeholder="Budget (per person)" value={form.budget} onChange={(e) => setForm((s) => ({ ...s, budget: e.target.value }))} />
-                  </div>
+  <Input
+    name="budget"
+    placeholder="Budget (per person)"
+    value={form.budget}
+    onChange={(e) => setForm({ ...form, budget: e.target.value })}
+  />
 
-                  <Input placeholder="Target dates (e.g., March 10–17)" value={form.dates} onChange={(e) => setForm((s) => ({ ...s, dates: e.target.value }))} />
+  <Input
+    name="dates"
+    placeholder="Target dates"
+    value={form.dates}
+    onChange={(e) => setForm({ ...form, dates: e.target.value })}
+  />
 
-                  <Textarea className="min-h-[120px]" placeholder="Where do you want to go? Must-dos, travel style, number of travelers, room preferences…"
-                    value={form.details} onChange={(e) => setForm((s) => ({ ...s, details: e.target.value }))} required />
+  <Textarea
+    name="details"
+    placeholder="Where do you want to go? Travel style, must-dos, number of travelers…"
+    value={form.details}
+    onChange={(e) => setForm({ ...form, details: e.target.value })}
+    required
+  />
 
-                  <Button type="submit">Send request <ChevronRight className="ml-1 h-4 w-4" /></Button>
-                </form>
+  <Button type="submit">Send request</Button>
+</form>
               )}
             </div>
           </Card>
