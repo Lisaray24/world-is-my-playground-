@@ -506,7 +506,7 @@ async function onSubmit(e) {
           </div>
 
           <Card>
-            <div className="border-b p-5">
+  <div className="border-b p-5">
               <div className="text-lg font-semibold">Trip request form</div>
               <div className="mt-1 text-sm text-zinc-600">Submit your trip details and we’ll reply within 24–48 hours.</div>
 .</div>
@@ -524,7 +524,7 @@ async function onSubmit(e) {
                     </Button>
                   </div>
                 </div>
-              ) : (
+              ) : (           
  <form onSubmit={onSubmit} className="grid gap-3">
   <Input
     name="name"
