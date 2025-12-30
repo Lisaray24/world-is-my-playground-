@@ -20,7 +20,7 @@ const BRAND = {
   tagline: "Every detail. Every destination.",
   phone: "(248) 284-3071",
   sms: "+12482843071", 
-  email: "lisa@worldismyplayground.us"
+  email: "lisa@worldismyplayground.us",
   location: "Detroit, MI",
   cta: "Plan My Trip",
 };
@@ -92,7 +92,7 @@ const FAQ = [
     a: "Yes. We manage the logistics end-to-end (flights, hotels, transfers, excursions, special requests) and stay available before and during your trip.",
   },
 ];
-const FORMSPREE_URL = "https://formspree.io/f/xregdkel";
+const FORMSPREE_URL = "https://formspree.io/f/xaqykkwj";
 
 function formatUSD(n) {
   try {
@@ -198,7 +198,7 @@ export default function App() {
     );
   }, [search]);
 
-  function onSubmit(e) async function onSubmit(e) {
+  async function onSubmit(e) {
   e.preventDefault();
 
   try {
@@ -261,7 +261,7 @@ export default function App() {
   }
 }
  ;
-  }
+
 
   return (
     <div className="min-h-screen bg-white text-zinc-900">
@@ -272,22 +272,15 @@ export default function App() {
             <span className="inline-flex items-center gap-2 text-zinc-700">
               <MapPin className="h-4 w-4" /> {BRAND.location}
             </span>
-            <a
-              className="inline-flex items-center gap-2 text-zinc-700 hover:underline"
-              href={`sms:${BRAND.sms}`} <a 
-              className="inline-flex items-center gap-2 text-zinc-700 hover:underline"
-  href={`tel:${BRAND.sms}`}
+<a
+  className="inline-flex items-center gap-2 text-zinc-700 hover:underline"
+  href={`tel:${BRAND.phone}`}
 >
-  <Phone className="h-4 w-4" /> Call
+  <Phone className="h-4 w-4" /> {BRAND.phone}
 </a>
-
- 
-            >
-              <Phone className="h-4 w-4" /> {BRAND.phone}
-            </a>
             <a
               className="inline-flex items-center gap-2 text-zinc-700 hover:underline"
-              href={`mailto:${lisa@theworldismyplayground.us}`}
+              href={`mailto:${BRAND.email}`}
             >
               <Mail className="h-4 w-4" /> {BRAND.email}
             </a>
@@ -565,12 +558,12 @@ export default function App() {
   onSubmit={onSubmit}
   className="grid gap-3"
 > <input type="hidden" name="_subject" value="New Trip Request — The World Is My Playground" />
- <Input name="name" placeholder="Your name" ... />
-<Input name="email" placeholder="Email" type="email" ... />
-<Input name="phone" placeholder="Phone (optional)" ... />
-<Input name="budget" placeholder="Budget (per person)" ... />
-<Input name="dates" placeholder="Target dates (e.g., March 10–17)" ... />
-<Textarea name="details" placeholder="Where do you want to go? ..." ... />
+ <Input name="name" placeholder="Your name" required />
+<Input name="email" placeholder="Email" type="email" />
+<Input name="phone" placeholder="Phone (optional)" />
+<Input name="budget" placeholder="Budget (per person)" />
+<Input name="dates" placeholder="Target dates (e.g., March 10–17)" />
+<Textarea name="details" placeholder="Where do you want to go? ..." />
 
 
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
