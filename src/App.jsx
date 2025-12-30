@@ -92,6 +92,7 @@ const FAQ = [
     a: "Yes. We manage the logistics end-to-end (flights, hotels, transfers, excursions, special requests) and stay available before and during your trip.",
   },
 ];
+const FORMSPREE_URL = "https://formspree.io/f/xregdkel";
 
 function formatUSD(n) {
   try {
@@ -197,10 +198,69 @@ export default function App() {
     );
   }, [search]);
 
-  function onSubmit(e) {
-    e.preventDefault();
-    setSubmitted(true);
-    console.log("Trip request:", form);
+  function onSubmit(e) async function onSubmit(e) {
+  e.preventDefault();
+
+  try {
+    const fd = new FormData();
+    fd.append("name", form.name);
+    fd.append("email", form.email);
+    fd.append("phone", form.phone);
+    fd.append("budget", form.budget);
+    fd.append("dates", form.dates);
+    fd.append("details", form.details);
+    fd.append("_subject", "New Trip Request — The World Is My Playground");
+
+    const res = await fetch(FORMSPREE_URL, {
+      method: "POST",
+      body: fd,
+      headers: { Accept: "application/json" },
+    });
+
+    if (res.ok) {
+      setSubmitted(true);
+      setForm({ name: "", email: "", phone: "", budget: "", dates: "", details: "" });
+      return;
+    }
+
+    const data = await res.json().catch(() => ({}));
+    console.error("Formspree error:", data);
+    alert("Your request didn’t send. Please try again.");
+  } catch (err) {
+    console.error(err);
+    alert("Network error. Please try again.");
+  }
+}
+
+
+  try {
+    const formData = new FormData(e.currentTarget);
+
+    // optional: set/override email subject here
+    formData.set("_subject", "New Trip Request — The World Is My Playground");
+
+    const res = await fetch(FORMSPREE_URL, {
+      method: "POST",
+      body: formData,
+      headers: { Accept: "application/json" },
+    });
+
+    if (res.ok) {
+      setSubmitted(true);
+      e.currentTarget.reset(); // clears the inputs
+      setForm({ name: "", email: "", phone: "", budget: "", dates: "", details: "" });
+      return;
+    }
+
+    const data = await res.json().catch(() => ({}));
+    console.error("Formspree error:", data);
+    alert("Hmm — your request didn’t send. Please try again.");
+  } catch (err) {
+    console.error(err);
+    alert("Network error — please try again.");
+  }
+}
+ ;
   }
 
   return (
@@ -502,8 +562,7 @@ export default function App() {
                 </div>
               ) : (
                 <form
-  action="https://formspree.io/f/https://formspree.io/f/xregdkel"
-  method="POST"
+  onSubmit={onSubmit}
   className="grid gap-3"
 > <input type="hidden" name="_subject" value="New Trip Request — The World Is My Playground" />
  <Input name="name" placeholder="Your name" ... />
