@@ -15,6 +15,8 @@ import {
   Ship,
 } from "lucide-react";
 
+const FORMSPREE_URL = "https://formspree.io/f/mbdjvyoe";
+
 const BRAND = {
   name: "The World Is My Playground",
   tagline: "Every detail. Every destination.",
@@ -92,7 +94,6 @@ const FAQ = [
     a: "Yes. We manage the logistics end-to-end (flights, hotels, transfers, excursions, special requests) and stay available before and during your trip.",
   },
 ];
-const FORMSPREE_URL = "https://formspree.io/f/xaqykkwj";
 
 function formatUSD(n) {
   try {
@@ -198,7 +199,7 @@ export default function App() {
     );
   }, [search]);
 
-  async function onSubmit(e) {
+async function onSubmit(e) {
   e.preventDefault();
 
   try {
@@ -231,37 +232,6 @@ export default function App() {
     alert("Network error. Please try again.");
   }
 }
-
-
-  try {
-    const formData = new FormData(e.currentTarget);
-
-    // optional: set/override email subject here
-    formData.set("_subject", "New Trip Request — The World Is My Playground");
-
-    const res = await fetch(FORMSPREE_URL, {
-      method: "POST",
-      body: formData,
-      headers: { Accept: "application/json" },
-    });
-
-    if (res.ok) {
-      setSubmitted(true);
-      e.currentTarget.reset(); // clears the inputs
-      setForm({ name: "", email: "", phone: "", budget: "", dates: "", details: "" });
-      return;
-    }
-
-    const data = await res.json().catch(() => ({}));
-    console.error("Formspree error:", data);
-    alert("Hmm — your request didn’t send. Please try again.");
-  } catch (err) {
-    console.error(err);
-    alert("Network error — please try again.");
-  }
-}
- ;
-
 
   return (
     <div className="min-h-screen bg-white text-zinc-900">
@@ -545,7 +515,7 @@ export default function App() {
                 <div className="rounded-2xl border border-zinc-200 p-5">
                   <div className="text-base font-semibold">Request received ✅</div>
                   <div className="mt-2 text-sm text-zinc-600">
-                    Right now this demo logs to the console. Next step: connect to Formspree so requests go to your email.
+                    “Thanks! Your request has been sent. Check your email (and spam) for confirmation.”
                   </div>
                   <div className="mt-4">
                     <Button onClick={() => { setSubmitted(false); setForm({ name:"", email:"", phone:"", budget:"", dates:"", details:"" }); }}>
