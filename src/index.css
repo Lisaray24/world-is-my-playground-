@@ -1,3 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap");
+
+:root {
+  --font-sans: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+.lux-serif {
+  font-family: var(--font-serif);
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

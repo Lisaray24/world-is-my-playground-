@@ -19,7 +19,8 @@ const BRAND = {
   name: "The World Is My Playground",
   tagline: "Every detail. Every destination.",
   phone: "(248) 284-3071",
-  email: "lisa@worldismyplayground.us",
+  sms: "+12482843071", 
+  email: "lisa@worldismyplayground.us"
   location: "Detroit, MI",
   cta: "Plan My Trip",
 };
@@ -106,7 +107,8 @@ function formatUSD(n) {
 
 function Card({ children, className = "" }) {
   return (
-    <div className={`rounded-3xl border border-zinc-200/70 bg-white shadow-sm ${className}`}>
+    <div className={`rounded-3xl border border-zinc-200/60 bg-white shadow-md shadow-zinc-200/40 ${className}`}
+>
       {children}
     </div>
   );
@@ -114,8 +116,9 @@ function Card({ children, className = "" }) {
 
 function Button({ children, variant = "solid", className = "", ...props }) {
   const base =
-    "inline-flex items-center justify-center rounded-2xl px-4 py-2 text-sm font-medium transition active:scale-[0.99]";
-  const solid = "bg-zinc-900 text-white hover:bg-zinc-800";
+    "inline-flex items-center justify-center rounded-2xl px-5 py-2.5 ...";
+  const solid =
+  "bg-zinc-950 text-white hover:bg-black shadow-sm hover:shadow-md";
   const outline = "border border-zinc-300 bg-white hover:bg-zinc-50 text-zinc-900";
   return (
     <button
@@ -211,13 +214,20 @@ export default function App() {
             </span>
             <a
               className="inline-flex items-center gap-2 text-zinc-700 hover:underline"
-              href={`tel:${BRAND.phone.replace(/[^0-9+]/g, "")}`}
+              href={`sms:${BRAND.sms}`} <a 
+              className="inline-flex items-center gap-2 text-zinc-700 hover:underline"
+  href={`tel:${BRAND.sms}`}
+>
+  <Phone className="h-4 w-4" /> Call
+</a>
+
+ 
             >
               <Phone className="h-4 w-4" /> {BRAND.phone}
             </a>
             <a
               className="inline-flex items-center gap-2 text-zinc-700 hover:underline"
-              href={`mailto:${BRAND.email}`}
+              href={`mailto:${lisa@theworldismyplayground.us}`}
             >
               <Mail className="h-4 w-4" /> {BRAND.email}
             </a>
@@ -306,7 +316,8 @@ export default function App() {
               <Sparkles className="mr-1 h-3.5 w-3.5" /> Full-service concierge travel
             </Badge>
 
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
+            <h1 className="lux-serif mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
+
               Luxury travel planning — <span className="underline underline-offset-8">without</span> the stress.
             </h1>
 
@@ -490,7 +501,19 @@ export default function App() {
                   </div>
                 </div>
               ) : (
-                <form onSubmit={onSubmit} className="grid gap-3">
+                <form
+  action="https://formspree.io/f/https://formspree.io/f/xregdkel"
+  method="POST"
+  className="grid gap-3"
+> <input type="hidden" name="_subject" value="New Trip Request — The World Is My Playground" />
+ <Input name="name" placeholder="Your name" ... />
+<Input name="email" placeholder="Email" type="email" ... />
+<Input name="phone" placeholder="Phone (optional)" ... />
+<Input name="budget" placeholder="Budget (per person)" ... />
+<Input name="dates" placeholder="Target dates (e.g., March 10–17)" ... />
+<Textarea name="details" placeholder="Where do you want to go? ..." ... />
+
+
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     <Input placeholder="Your name" value={form.name} onChange={(e) => setForm((s) => ({ ...s, name: e.target.value }))} required />
                     <Input placeholder="Email" type="email" value={form.email} onChange={(e) => setForm((s) => ({ ...s, email: e.target.value }))} required />
