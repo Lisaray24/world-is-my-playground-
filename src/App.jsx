@@ -508,7 +508,8 @@ async function onSubmit(e) {
           <Card>
             <div className="border-b p-5">
               <div className="text-lg font-semibold">Trip request form</div>
-              <div className="mt-1 text-sm text-zinc-600">Next step: connect this to email (Formspree).</div>
+              <div className="mt-1 text-sm text-zinc-600">Submit your trip details and we’ll reply within 24–48 hours.</div>
+.</div>
             </div>
             <div className="p-6">
               {submitted ? (
