@@ -504,81 +504,96 @@ async function onSubmit(e) {
               <Card><div className="p-6"><div className="flex items-center gap-2 text-sm font-medium"><MapPin className="h-4 w-4" /> Location</div><div className="mt-2 text-sm text-zinc-600">{BRAND.location}</div></div></Card>
             </div>
           </div>
-
-          <Card>
+<Card>
   <div className="border-b p-5">
-              <div className="text-lg font-semibold">Trip request form</div>
-              <div className="mt-1 text-sm text-zinc-600">Submit your trip details and we’ll reply within 24–48 hours.</div>
-.</div>
-            </div>
-            <div className="p-6">
-              {submitted ? (
-                <div className="rounded-2xl border border-zinc-200 p-5">
-                  <div className="text-base font-semibold">Request received ✅</div>
-                  <div className="mt-2 text-sm text-zinc-600">
-                    “Thanks! Your request has been sent. Check your email (and spam) for confirmation.”
-                  </div>
-                  <div className="mt-4">
-                    <Button onClick={() => { setSubmitted(false); setForm({ name:"", email:"", phone:"", budget:"", dates:"", details:"" }); }}>
-                      Submit another
-                    </Button>
-                  </div>
-                </div>
-              ) : (           
- <form onSubmit={onSubmit} className="grid gap-3">
-  <Input
-    name="name"
-    placeholder="Your name"
-    value={form.name}
-    onChange={(e) => setForm({ ...form, name: e.target.value })}
-    required
-  />
+    <div className="text-lg font-semibold">Trip request form</div>
+    <div className="mt-1 text-sm text-zinc-600">
+      Submit your trip details and we’ll reply within 24–48 hours.
+    </div>
+  </div>
 
-  <Input
-    name="email"
-    type="email"
-    placeholder="Email"
-    value={form.email}
-    onChange={(e) => setForm({ ...form, email: e.target.value })}
-    required
-  />
-
-  <Input
-    name="phone"
-    placeholder="Phone (optional)"
-    value={form.phone}
-    onChange={(e) => setForm({ ...form, phone: e.target.value })}
-  />
-
-  <Input
-    name="budget"
-    placeholder="Budget (per person)"
-    value={form.budget}
-    onChange={(e) => setForm({ ...form, budget: e.target.value })}
-  />
-
-  <Input
-    name="dates"
-    placeholder="Target dates"
-    value={form.dates}
-    onChange={(e) => setForm({ ...form, dates: e.target.value })}
-  />
-
-  <Textarea
-    name="details"
-    placeholder="Where do you want to go? Travel style, must-dos, number of travelers…"
-    value={form.details}
-    onChange={(e) => setForm({ ...form, details: e.target.value })}
-    required
-  />
-
-  <Button type="submit">Send request</Button>
-</form>
-              )}
-            </div>
-          </Card>
+  <div className="p-6">
+    {submitted ? (
+      <div className="rounded-2xl border border-zinc-200 p-5">
+        <div className="text-base font-semibold">Request received ✅</div>
+        <div className="mt-2 text-sm text-zinc-600">
+          Thanks! Your request has been sent. Check your email (and spam) for confirmation.
         </div>
-      </section>
+
+        <div className="mt-4">
+          <Button
+            onClick={() => {
+              setSubmitted(false);
+              setForm({
+                name: "",
+                email: "",
+                phone: "",
+                budget: "",
+                dates: "",
+                details: "",
+              });
+            }}
+          >
+            Submit another
+          </Button>
+        </div>
+      </div>
+    ) : (
+      <form onSubmit={onSubmit} className="grid gap-3">
+        <Input
+          name="name"
+          placeholder="Your name"
+          value={form.name}
+          onChange={(e) => setForm({ ...form, name: e.target.value })}
+          required
+        />
+
+        <Input
+          name="email"
+          type="email"
+          placeholder="Email"
+          value={form.email}
+          onChange={(e) => setForm({ ...form, email: e.target.value })}
+          required
+        />
+
+        <Input
+          name="phone"
+          placeholder="Phone (optional)"
+          value={form.phone}
+          onChange={(e) => setForm({ ...form, phone: e.target.value })}
+        />
+
+        <Input
+          name="budget"
+          placeholder="Budget (per person)"
+          value={form.budget}
+          onChange={(e) => setForm({ ...form, budget: e.target.value })}
+        />
+
+        <Input
+          name="dates"
+          placeholder="Target dates"
+          value={form.dates}
+          onChange={(e) => setForm({ ...form, dates: e.target.value })}
+        />
+
+        <Textarea
+          name="details"
+          placeholder="Where do you want to go? Travel style, must-dos, number of travelers…"
+          value={form.details}
+          onChange={(e) => setForm({ ...form, details: e.target.value })}
+          required
+        />
+
+        <Button type="submit">Send request</Button>
+      </form>
+    )}
+  </div>
+</Card>
+
+  </div>
+</section>
 
       <footer className="border-t">
         <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-zinc-600">
