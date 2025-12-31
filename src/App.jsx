@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from "react";
-import { motion } from "framer-motion";
 import {
   Plane,
   Phone,
@@ -189,7 +188,7 @@ export default function App() {
     details: "",
   });
 
-  const prefersReducedMotion = useReducedMotion();
+const prefersReducedMotion = useReducedMotion();
 const easeLuxury = [0.22, 1, 0.36, 1];
 const reveal = (delay = 0) => ({
   initial: { opacity: 0, y: 14 },
@@ -325,6 +324,14 @@ async function onSubmit(e) {
               onClick={() => setMenuOpen((s) => !s)}
               aria-expanded={menuOpen}
             >
+              <motion.div
+  whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
+  whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
+  transition={{ duration: 0.25, ease: easeLuxury }}
+>
+  <Button>Plan My Trip</Button>
+</motion.div>
+
               Menu
             </button>
           </div>
@@ -392,6 +399,11 @@ async function onSubmit(e) {
               </a>
             </div>
           </motion.div>
+
+          <motion.h2 className="text-2xl font-semibold" {...reveal(0)}>
+  Services
+</motion.h2>
+
 
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.05 }}>
             <Card className="overflow-hidden">
