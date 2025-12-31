@@ -272,8 +272,8 @@ async function onSubmit(e) {
       </div>
 
       {/* Header */}
-      <img src="/logo.jpg" alt={`${BRAND.name} logo`} className="..." />
-      <header className="sticky top-0 z-40 border-b bg-black/70 backdrop-blur">
+      <img src="/logo.jpg" alt={`${BRAND.name} logo`} />
+     <header className="sticky top-0 z-40 border-b bg-black/70 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <a href="#" className="flex items-center gap-2">
             <div className="h-10 w-10 overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm">
@@ -345,7 +345,7 @@ async function onSubmit(e) {
         </div>
 
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-12 md:grid-cols-2 md:py-16">
-          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: easeLuxury }}>
             <Badge className="border-zinc-200 bg-white">
               <Sparkles className="mr-1 h-3.5 w-3.5" /> Full-service concierge travel
             </Badge>
@@ -429,7 +429,8 @@ async function onSubmit(e) {
 
       <motion.div
   whileHover={{ y: -4 }}
-  transition={{ duration: 0.35, ease: easeLuxury }}
+  transition={{ duration: 0.7, ease: easeLuxury }}
+
 >
   <Card>...</Card>
 </motion.div>
