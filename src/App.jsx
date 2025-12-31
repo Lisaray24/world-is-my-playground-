@@ -15,7 +15,13 @@ import {
   Ship,
 } from "lucide-react";
 
+import logo from "./assets/logo.png";
+
+
 const FORMSPREE_URL = "https://formspree.io/f/mbdjvyoe";
+
+const easeLuxury = [0.22, 1, 0.36, 1];
+
 
 const BRAND = {
   name: "The World Is My Playground",
@@ -234,7 +240,8 @@ async function onSubmit(e) {
 }
 
   return (
-    <div className="min-h-screen bg-white text-zinc-900">
+    <div className="min-h-screen text-zinc-900" style={{ background: "var(--lux-bg)" }}>
+
       {/* Top bar */}
       <div className="border-b bg-zinc-50/70">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2 text-sm">
@@ -267,12 +274,18 @@ async function onSubmit(e) {
       </div>
 
       {/* Header */}
-      <header className="sticky top-0 z-40 border-b bg-white/80 backdrop-blur">
+      <img src="/logo.jpg" alt={`${BRAND.name} logo`} />
+      <header className="sticky top-0 z-40 border-b bg-black/70 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <a href="#" className="flex items-center gap-2">
-            <div className="grid h-9 w-9 place-items-center rounded-2xl bg-zinc-900 text-white">
-              <Plane className="h-5 w-5" />
-            </div>
+            <div className="h-10 w-10 overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm">
+  <img
+    src="/logo.jpg"
+    alt={`${BRAND.name} logo`}
+    className="h-full w-full object-contain p-1"
+  />
+</div>
+
             <div className="leading-tight">
               <div className="text-base font-semibold">{BRAND.name}</div>
               <div className="text-xs text-zinc-500">{BRAND.tagline}</div>
@@ -284,7 +297,7 @@ async function onSubmit(e) {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm text-zinc-600 hover:text-zinc-900"
+                className="text-sm text-zinc-200 hover:text-white"
               >
                 {item.label}
               </a>
@@ -416,6 +429,14 @@ async function onSubmit(e) {
         </div>
       </section>
 
+      <motion.div
+  whileHover={{ y: -4 }}
+  transition={{ duration: 0.35, ease: easeLuxury }}
+>
+  <Card>...</Card>
+</motion.div>
+
+
       {/* Packages */}
       <section id="packages" className="mx-auto max-w-6xl px-4 py-12">
         <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
@@ -430,6 +451,9 @@ async function onSubmit(e) {
             </div>
           </div>
         </div>
+
+        transition={{ duration: 0.6, ease: easeLuxury }}
+
 
         <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
           {filteredDestinations.map((d) => {
