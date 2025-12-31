@@ -451,9 +451,6 @@ async function onSubmit(e) {
           </div>
         </div>
 
-        transition={{ duration: 0.6, ease: easeLuxury }}
-
-
         <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
           {filteredDestinations.map((d) => {
             const Icon = d.icon;
