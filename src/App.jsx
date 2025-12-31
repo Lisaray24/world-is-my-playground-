@@ -15,6 +15,8 @@ import {
   Ship,
 } from "lucide-react";
 
+import { motion, useReducedMotion } from "framer-motion";
+
 
 const FORMSPREE_URL = "https://formspree.io/f/mbdjvyoe";
 
@@ -187,6 +189,18 @@ export default function App() {
     details: "",
   });
 
+  const prefersReducedMotion = useReducedMotion();
+const easeLuxury = [0.22, 1, 0.36, 1];
+const reveal = (delay = 0) => ({
+  initial: { opacity: 0, y: 14 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.2 },
+  transition: prefersReducedMotion
+    ? { duration: 0 }
+    : { duration: 0.7, ease: easeLuxury, delay },
+});
+
+
   const nav = [
     { label: "Packages", href: "#packages" },
     { label: "How it Works", href: "#how" },
@@ -343,6 +357,12 @@ async function onSubmit(e) {
           <div className="absolute -top-32 -right-20 h-96 w-96 rounded-full bg-zinc-100 blur-3xl opacity-70" />
           <div className="absolute -bottom-32 -left-20 h-96 w-96 rounded-full bg-zinc-100 blur-3xl opacity-70" />
         </div>
+<motion.div {...reveal(0)}>
+  {/* your hero content here */}
+</motion.div>
+<motion.div {...reveal(0.08)}>
+  {/* hero image or hero card */}
+</motion.div>
 
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-12 md:grid-cols-2 md:py-16">
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: easeLuxury }}>
@@ -470,6 +490,15 @@ async function onSubmit(e) {
                       </div>
                       <Badge>From {formatUSD(d.priceFrom)}</Badge>
                     </div>
+                    <motion.div
+  whileHover={prefersReducedMotion ? {} : { y: -4 }}
+  transition={{ duration: 0.35, ease: easeLuxury }}
+>
+  <Card className="h-full">
+    ...
+  </Card>
+</motion.div>
+
 
                     <div className="mt-4 flex flex-wrap gap-2">
                       <Badge className="bg-white">{d.duration}</Badge>
