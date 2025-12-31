@@ -15,8 +15,6 @@ import {
   Ship,
 } from "lucide-react";
 
-import logo from "./assets/logo.png";
-
 
 const FORMSPREE_URL = "https://formspree.io/f/mbdjvyoe";
 
@@ -274,7 +272,7 @@ async function onSubmit(e) {
       </div>
 
       {/* Header */}
-      <img src="/logo.jpg" alt={`${BRAND.name} logo`} />
+      <img src="/logo.jpg" alt={`${BRAND.name} logo`} className="..." />
       <header className="sticky top-0 z-40 border-b bg-black/70 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <a href="#" className="flex items-center gap-2">
@@ -545,7 +543,9 @@ async function onSubmit(e) {
         </div>
 
         <div className="mt-4">
-          <Button
+          <button
+            className="rounded-2xl bg-zinc-900 px-4 py-2 text-white hover:bg-zinc-800"
+            type="button"
             onClick={() => {
               setSubmitted(false);
               setForm({
@@ -559,7 +559,7 @@ async function onSubmit(e) {
             }}
           >
             Submit another
-          </Button>
+          </button>
         </div>
       </div>
     ) : (
@@ -610,11 +610,17 @@ async function onSubmit(e) {
           required
         />
 
-        <Button type="submit">Send request</Button>
+        <button
+          className="mt-2 rounded-2xl bg-zinc-900 px-4 py-2 text-white hover:bg-zinc-800"
+          type="submit"
+        >
+          Send request
+        </button>
       </form>
     )}
   </div>
 </Card>
+
 
   </div>
 </section>
