@@ -1,6 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap");
 
 :root{
+  --lux-bg: #050607;                 /* near-black */
+  --lux-panel: rgba(255,255,255,.04);/* dark glass */
+  --lux-ink: #f6f7f8;                /* near-white */
+  --lux-muted: rgba(246,247,248,.72);
+  --lux-line: rgba(246,247,248,.12);
+  --lux-emerald: #0f766e;            /* emerald */
+  --lux-emerald2: #10b981;           /* brighter emerald */
+}
+
+
+:root{
   --lux-bg: #fbfaf7;        /* soft cream */
   --lux-ink: #0b0b0f;       /* deep charcoal */
   --lux-gold: #b08d57;      /* muted gold */

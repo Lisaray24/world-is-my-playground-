@@ -114,7 +114,8 @@ function formatUSD(n) {
 function Card({ children, className = "" }) {
   return ( 
     <div className={`rounded-3xl border border-zinc-200/60 bg-white shadow-md shadow-zinc-200/40 ${className}`}
->
+><div className="h-px w-full bg-emerald-500/20 my-8" />
+
       {children}
     </div>
   );
@@ -276,7 +277,10 @@ async function onSubmit(e) {
           </div>
           <div className="hidden items-center gap-2 md:flex">
             <Badge>
-              <ShieldCheck className="mr-1 h-3.5 w-3.5" /> Trusted Planning
+              <Badge className="border border-emerald-500/30 bg-emerald-500/10 text-emerald-300">
+  Trusted Planning
+</Badge>
+
             </Badge>
             <Badge>
               <Sparkles className="mr-1 h-3.5 w-3.5" /> Concierge Service
@@ -293,7 +297,7 @@ async function onSubmit(e) {
             <div className="h-10 w-10 overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm">
   <img
     src="/logo.jpg"
-    alt={`${BRAND.name} logo`}
+    alt={`${BRAND.name} logo`} 
     className="h-full w-full object-contain p-1"
   />
 </div>
@@ -317,26 +321,44 @@ async function onSubmit(e) {
           </nav>
 
           <div className="flex items-center gap-2">
-            <a href="#contact" className="hidden md:block">
-              <Button>{BRAND.cta}</Button>
-            </a>
-            <button
-              className="md:hidden rounded-2xl border border-zinc-300 px-3 py-2 text-sm"
-              onClick={() => setMenuOpen((s) => !s)}
-              aria-expanded={menuOpen}
-            >
-              <motion.div
-  whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
-  whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
-  transition={{ duration: 0.25, ease: easeLuxury }}
->
-  <Button>Plan My Trip</Button>
-</motion.div>
+  {/* Primary CTA (emerald) */}
+  <motion.a
+    href="#contact"
+    className="hidden md:inline-flex"
+    whileHover={prefersReducedMotion ? {} : { y: -2 }}
+    whileTap={prefersReducedMotion ? {} : { y: 0 }}
+    transition={{ duration: 0.25, ease: easeLuxury }}
+  >
+    <Button className="rounded-2xl bg-emerald-600 px-5 py-2 text-white hover:bg-emerald-500 transition-colors">
+      {BRAND.cta}
+    </Button>
+  </motion.a>
 
-              Menu
-            </button>
-          </div>
-        </div>
+  {/* Book a call (outline emerald) */}
+  <motion.a
+    href="https://calendly.com/lisarenee824/30min"
+    target="_blank"
+    rel="noreferrer"
+    className="hidden md:inline-flex"
+    whileHover={prefersReducedMotion ? {} : { y: -2 }}
+    whileTap={prefersReducedMotion ? {} : { y: 0 }}
+    transition={{ duration: 0.25, ease: easeLuxury }}
+  >
+    <span className="inline-flex items-center justify-center rounded-2xl border border-emerald-500/40 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-300 hover:bg-emerald-500/15 transition">
+      Book a Call
+    </span>
+  </motion.a>
+
+  {/* Mobile menu toggle */}
+  <button
+    className="md:hidden rounded-2xl border border-white/15 bg-white/5 px-3 py-2 text-sm text-white/80 hover:text-white"
+    onClick={() => setMenuOpen((s) => !s)}
+    aria-expanded={menuOpen}
+  >
+    Menu
+  </button>
+</div>
+
 
         {menuOpen && (
           <div className="md:hidden border-t bg-white">
@@ -357,6 +379,7 @@ async function onSubmit(e) {
             </div>
           </div>
         )}
+        </div>
       </header>
 
       {/* Hero */}
