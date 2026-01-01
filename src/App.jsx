@@ -16,7 +16,6 @@ import {
 
 import { motion, useReducedMotion } from "framer-motion";
 
-
 const FORMSPREE_URL = "https://formspree.io/f/mbdjvyoe";
 
 const easeLuxury = [0.22, 1, 0.36, 1];
@@ -113,7 +112,7 @@ function formatUSD(n) {
 }
 
 function Card({ children, className = "" }) {
-  return (
+  return ( 
     <div className={`rounded-3xl border border-zinc-200/60 bg-white shadow-md shadow-zinc-200/40 ${className}`}
 >
       {children}
@@ -251,8 +250,10 @@ async function onSubmit(e) {
 }
 
   return (
-    <div className="min-h-screen text-zinc-900" style={{ background: "var(--lux-bg)" }}>
-
+   <div
+  className="min-h-screen"
+  style={{ background: "var(--lux-bg)", color: "var(--lux-ink)" }}
+> 
       {/* Top bar */}
       <div className="border-b bg-zinc-50/70">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2 text-sm">
