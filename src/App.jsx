@@ -517,8 +517,12 @@ async function onSubmit(e) {
       <section id="packages" className="mx-auto max-w-6xl px-4 py-12">
         <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
           <div>
-            <h2 className="text-2xl font-semibold tracking-tight">Popular starting points</h2>
-            <p className="mt-1 text-white/70">Customize dates, destinations, hotels, room types, and pacing.</p>
+           <h2 className="text-2xl font-semibold tracking-tight">
+  Featured Trips
+</h2>
+<p className="mt-1 text-white/70">
+  Curated options you can customize — dates, room types, and travel style.
+</p>
           </div>
           <div className="w-full md:w-80">
             <div className="relative">
@@ -697,6 +701,7 @@ async function onSubmit(e) {
           onChange={(e) => setForm({ ...form, details: e.target.value })}
           required
         />
+document.querySelector('textarea[name="details"]')?.focus();
 
         <button
           className="mt-2 rounded-2xl bg-zinc-900 px-4 py-2 text-white hover:bg-zinc-800"
