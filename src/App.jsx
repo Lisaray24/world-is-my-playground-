@@ -500,7 +500,7 @@ async function onSubmit(e) {
         <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
           <div>
             <h2 className="text-2xl font-semibold tracking-tight">Popular starting points</h2>
-            <p className="mt-1 text-zinc-600">Customize dates, destinations, hotels, room types, and pacing.</p>
+            <p className="mt-1 text-white/70">Customize dates, destinations, hotels, room types, and pacing.</p>
           </div>
           <div className="w-full md:w-80">
             <div className="relative">
@@ -528,17 +528,19 @@ async function onSubmit(e) {
                         </div>
                       </div>
                       <Badge>From {formatUSD(d.priceFrom)}</Badge>
+                      <div className="mt-4 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+  <div className="relative h-44 w-full">
+    <img
+      src={d.image}
+      alt={d.title}
+      className="h-full w-full object-cover"
+      loading="lazy"
+    />
+    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+  </div>
+</div>
+
                     </div>
-                    <motion.div
-  whileHover={prefersReducedMotion ? {} : { y: -4 }}
-  transition={{ duration: 0.35, ease: easeLuxury }}
->
-  <Card className="h-full">
-    ...
-  </Card>
-</motion.div>
-
-
                     <div className="mt-4 flex flex-wrap gap-2">
                       <Badge className="bg-white">{d.duration}</Badge>
                       {d.highlights.map((h) => (
