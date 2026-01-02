@@ -20,7 +20,6 @@ const FORMSPREE_URL = "https://formspree.io/f/mbdjvyoe";
 
 const easeLuxury = [0.22, 1, 0.36, 1];
 
-
 const BRAND = {
   name: "The World Is My Playground",
   tagline: "Every detail. Every destination.",
@@ -34,6 +33,7 @@ const PACKAGES = [
   {
     title: "All-Inclusive Escapes",
     subtitle: "Resorts, transfers, and stress-free vibes",
+    badge: "Top Pick",
     icon: Umbrella,
     priceFrom: 1299,
     image: "/packages/cancun.jpg",
@@ -43,6 +43,7 @@ const PACKAGES = [
   {
     title: "Luxury Cruises",
     subtitle: "Suite upgrades, curated excursions",
+    badge: "Best Value",
     icon: Ship,
     priceFrom: 1599,
     image: "/packages/luxury-cruise.jpg",
@@ -52,6 +53,7 @@ const PACKAGES = [
   {
     title: "Worldwide Adventures",
     subtitle: "Cities, islands, and bucket-list travel",
+    badge: "Most Exciting Destination", 
     icon: Plane,
     priceFrom: 1899,
     image: "/packages/bali.jpg",
@@ -61,6 +63,7 @@ const PACKAGES = [
   {
     title: "Honeymoons & Celebrations",
     subtitle: "Milestones planned like a movie",
+    badge: "Limited Time", 
     icon: Sparkles,
     priceFrom: 1799,
     image: "/packages/brazil-rio.jpg",
@@ -536,53 +539,62 @@ async function onSubmit(e) {
           {filteredPACKAGES.map((d) => {
             const Icon = d.icon;
             return (
-              <motion.div key={d.title} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.35 }}>
-                <Card className="h-full overflow-hidden border border-white/10 bg-white/5 transition duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:shadow-[0_20px_60px_-30px_rgba(16,185,129,0.35)]">
-                  <div className="p-6">
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex items-start gap-3">
-                        <div className="grid h-11 w-11 place-items-center rounded-2xl border border-white/10 bg-white/5 text-white/80 transition group-hover:border-emerald-500/30">
-                          <Icon className="h-5 w-5" />
-                        </div>
-                        <div>
-                          <div className="text-lg font-semibold">{d.title}</div>
-                          <div className="text-sm text-zinc-600">{d.subtitle}</div>
-                        </div>
-                      </div>
-                      <Badge>From {formatUSD(d.priceFrom)}</Badge>
-                      <div className="mt-4 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
-  <div className="relative h-44 w-full">
-    <img
-      src={d.image}
-      alt={d.title}
-      className="h-full w-full object-cover"
-      loading="lazy"
-    />
-    className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
-   <motion.div className="group"></motion.div>
- 
-  </div>
-</div>
+              <motion.div
+  key={d.title}
+  initial={{ opacity: 0, y: 10 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true, amount: 0.2 }}
+  transition={{ duration: 0.35 }}
+>
+  <Card className="group overflow-hidden">
 
-                    </div>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      <Badge className="bg-white">{d.duration}</Badge>
-                      {d.highlights.map((h) => (
-                        <Badge key={h} className="bg-white">{h}</Badge>
-                      ))}
-                    </div>
+    {/* IMAGE */}
+    <div className="relative h-44 w-full">
+      <img
+        src={d.image}
+        alt={d.title}
+        className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+        loading="lazy"
+      />
 
-                    <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                      <div className="text-sm text-zinc-600">Want this but different? We’ll tailor it.</div>
-                      <a href="#contact">
-                        <Button variant="outline" className="w-full sm:w-auto">
-                          Request this trip <ChevronRight className="ml-1 h-4 w-4" />
-                        </Button>
-                      </a>
-                    </div>
-                  </div>
-                </Card>
-              </motion.div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+      {d.badge && (
+        <div className="absolute left-3 top-3 z-10 rounded-full bg-black/70 px-3 py-1 text-xs font-medium text-white backdrop-blur">
+          {d.badge}
+        </div>
+      )}
+    </div>
+
+    {/* CONTENT */}
+    <div className="p-6">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <div className="text-lg font-semibold">{d.title}</div>
+          <div className="text-sm text-zinc-600">{d.subtitle}</div>
+        </div>
+        <Badge>From {formatUSD(d.priceFrom)}</Badge>
+      </div>
+
+      <div className="mt-4 flex flex-wrap gap-2">
+        <Badge className="bg-white">{d.duration}</Badge>
+        {d.highlights.map((h) => (
+          <Badge key={h} className="bg-white">{h}</Badge>
+        ))}
+      </div>
+
+      <div className="mt-6 flex justify-end">
+        <a href="#contact">
+          <Button variant="outline">
+            Request this trip <ChevronRight className="ml-1 h-4 w-4" />
+          </Button>
+        </a>
+      </div>
+    </div>
+
+  </Card>
+</motion.div>
+
             );
           })}
         </div>
@@ -694,21 +706,20 @@ async function onSubmit(e) {
           onChange={(e) => setForm({ ...form, dates: e.target.value })}
         />
 
-        <Textarea
-          name="details"
-          placeholder="Where do you want to go? Travel style, must-dos, number of travelers…"
-          value={form.details}
-          onChange={(e) => setForm({ ...form, details: e.target.value })}
-          required
-        />
-document.querySelector('textarea[name="details"]')?.focus();
+<Textarea
+  name="details"
+  placeholder="Where do you want to go? Travel style, must-dos, number of travelers…"
+  value={form.details}
+  onChange={(e) => setForm({ ...form, details: e.target.value })}
+  required
+/>
 
-        <button
-          className="mt-2 rounded-2xl bg-zinc-900 px-4 py-2 text-white hover:bg-zinc-800"
-          type="submit"
-        >
-          Send request
-        </button>
+<button
+  className="mt-2 rounded-2xl bg-zinc-900 px-4 py-2 text-white hover:bg-zinc-800"
+  type="submit"
+>
+  Send request
+</button>
       </form>
     )}
   </div>
