@@ -31,6 +31,69 @@ const BRAND = {
   cta: "Plan My Trip",
 };
 
+const PACKAGES = [
+  {
+    id: "cancun-allinclusive",
+    title: "Cancún All-Inclusive Escape",
+    destination: "Cancún, Mexico",
+    duration: "5–7 nights",
+    bestFor: "Beach + quick luxury reset",
+    fromPrice: "$1,499+",
+    image: "/packages/cancun.jpg",
+    highlights: ["Adults-only options", "Airport transfers", "Resort credit (when available)"],
+  },
+  {
+    id: "jamaica-allinclusive",
+    title: "Jamaica All-Inclusive Getaway",
+    destination: "Montego Bay / Negril",
+    duration: "4–7 nights",
+    bestFor: "Romance + laid-back vibes",
+    fromPrice: "$1,399+",
+    image: "/packages/jamaica.jpg",
+    highlights: ["Oceanfront suites", "Excursion planning", "Private transfers (optional)"],
+  },
+  {
+    id: "punta-cana-allinclusive",
+    title: "Punta Cana Luxury All-Inclusive",
+    destination: "Punta Cana, Dominican Republic",
+    duration: "5–7 nights",
+    bestFor: "Value luxury + groups",
+    fromPrice: "$1,299+",
+    image: "/packages/punta-cana.jpg",
+    highlights: ["Family & adults-only", "Butler upgrades", "Group coordination"],
+  },
+  {
+    id: "med-cruise",
+    title: "Mediterranean Luxury Cruise",
+    destination: "Italy • Greece • Spain (varies)",
+    duration: "7–10 nights",
+    bestFor: "Bucket-list culture + ocean luxury",
+    fromPrice: "$2,499+",
+    image: "/packages/med-cruise.jpg",
+    highlights: ["Balcony suite options", "Shore excursions", "Pre/post hotel planning"],
+  },
+  {
+    id: "alaska-cruise",
+    title: "Alaska Scenic Cruise",
+    destination: "Juneau • Skagway • Glacier routes",
+    duration: "7 nights",
+    bestFor: "Nature + once-in-a-lifetime views",
+    fromPrice: "$1,899+",
+    image: "/packages/alaska-cruise.jpg",
+    highlights: ["Glacier viewing", "Wildlife excursions", "Rail add-ons (optional)"],
+  },
+  {
+    id: "paris-london",
+    title: "Paris + London Luxe City Duo",
+    destination: "Paris + London",
+    duration: "6–9 nights",
+    bestFor: "First-class city experience",
+    fromPrice: "$2,199+",
+    image: "/packages/paris.jpg",
+    highlights: ["Boutique hotels", "Rail between cities", "Dining & tickets planning"],
+  },
+];
+
 const DESTINATIONS = [
   {
     title: "All-Inclusive Escapes",
@@ -425,7 +488,94 @@ async function onSubmit(e) {
           </motion.div>
 
           <motion.h2 className="text-2xl font-semibold" {...reveal(0)}>
-  Services
+  <section id="packages" className="mx-auto max-w-6xl px-4 py-12 md:py-16">
+  <div className="flex items-end justify-between gap-4">
+    <div>
+      <h2 className="text-2xl font-semibold">Featured Packages</h2>
+      <p className="mt-2 text-sm text-white/70">
+        Select a trip and request details. I’ll confirm pricing, availability, and the best options for your dates.
+      </p>
+    </div>
+  </div>
+
+  <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+    {PACKAGES.map((p) => (
+      <motion.div
+        key={p.id}
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        whileHover={{ y: -4 }}
+        transition={{ duration: 0.35, ease: easeLuxury }}
+      >
+        <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+          <div className="relative h-44 w-full overflow-hidden">
+            <img
+              src={p.image}
+              alt={p.title}
+              className="h-full w-full object-cover"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+            <div className="absolute bottom-3 left-3 right-3">
+              <div className="text-sm text-white/80">{p.destination}</div>
+              <div className="text-lg font-semibold text-white">{p.title}</div>
+            </div>
+          </div>
+
+          <div className="p-5">
+            <div className="flex items-center justify-between text-sm text-white/70">
+              <span>{p.duration}</span>
+              <span className="text-white/90">From {p.fromPrice}</span>
+            </div>
+
+            <div className="mt-3 text-sm text-white/70">
+              <span className="text-white/90">Best for:</span> {p.bestFor}
+            </div>
+
+            <ul className="mt-4 space-y-2 text-sm text-white/70">
+              {p.highlights.map((h) => (
+                <li key={h} className="flex gap-2">
+                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-400/80" />
+                  <span>{h}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-5 flex gap-2">
+              <a href="#contact" className="flex-1">
+                <Button
+                  className="w-full rounded-2xl bg-emerald-600 px-4 py-2 text-white hover:bg-emerald-500 transition-colors"
+                  onClick={() => {
+                    // OPTIONAL: auto-fill your form "details" with the selected package
+                    try {
+                      setForm((prev) => ({
+                        ...prev,
+                        details: `Interested in: ${p.title} (${p.destination}).\nDates: \nTravelers: \nNotes:`,
+                      }));
+                      setSubmitted(false);
+                    } catch {}
+                  }}
+                >
+                  Request details
+                </Button>
+              </a>
+
+              <button
+                type="button"
+                className="rounded-2xl border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/80 hover:bg-white/10 transition"
+                onClick={() => alert(`${p.title}\n\nDestination: ${p.destination}\nDuration: ${p.duration}\nFrom: ${p.fromPrice}`)}
+              >
+                View
+              </button>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    ))}
+  </div>
+</section>
+
 </motion.h2>
 
 
