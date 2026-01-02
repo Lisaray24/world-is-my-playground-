@@ -30,8 +30,7 @@ const BRAND = {
   location: "Detroit, MI",
   cta: "Plan My Trip",
 };
-  <h2 className="text-2xl font-semibold">Featured Packages</h2>
-const DESTINATIONS = [
+const PACKAGES = [
   {
     title: "All-Inclusive Escapes",
     subtitle: "Resorts, transfers, and stress-free vibes",
@@ -46,7 +45,7 @@ const DESTINATIONS = [
     subtitle: "Suite upgrades, curated excursions",
     icon: Ship,
     priceFrom: 1599,
-    image: "/packages/luxury cruise.jpg",
+    image: "/packages/luxury-cruise.jpg",
     duration: "4–10 nights",
     highlights: ["Balcony & suite perks", "Shore experiences", "Group rates"],
   },
@@ -64,7 +63,7 @@ const DESTINATIONS = [
     subtitle: "Milestones planned like a movie",
     icon: Sparkles,
     priceFrom: 1799,
-    image: "/packages/brazil rio.jpg",
+    image: "/packages/brazil-rio.jpg",
     duration: "5–10 nights",
     highlights: ["Romance add-ons", "Surprises & upgrades", "VIP support"],
   },
@@ -212,10 +211,10 @@ const reveal = (delay = 0) => ({
     { label: "Contact", href: "#contact" },
   ];
 
-  const filteredDestinations = useMemo(() => {
+  const filteredPACKAGES = useMemo(() => {
     const q = search.trim().toLowerCase();
-    if (!q) return DESTINATIONS;
-    return DESTINATIONS.filter((d) =>
+    if (!q) return PACKAGES;
+    return PACKAGES.filter((d) =>
       `${d.title} ${d.subtitle} ${d.highlights.join(" ")}`.toLowerCase().includes(q)
     );
   }, [search]);
@@ -269,7 +268,7 @@ async function onSubmit(e) {
 <a
   className="inline-flex items-center gap-2 text-zinc-700 hover:underline"
   href={`tel:${BRAND.phone}`}
->
+><h2 className="text-2xl font-semibold">Featured Packages</h2>
   <Phone className="h-4 w-4" /> {BRAND.phone}
 </a>
             <a
@@ -599,7 +598,7 @@ async function onSubmit(e) {
         </div>
 
         <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
-          {filteredDestinations.map((d) => {
+          {filteredPACKAGES.map((d) => {
             const Icon = d.icon;
             return (
               <motion.div key={d.title} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.35 }}>
