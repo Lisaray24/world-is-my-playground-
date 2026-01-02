@@ -179,6 +179,24 @@ function StarRow({ rating = 5 }) {
 }
 
 export default function App() {
+ const requestPackage = (pkg) => {
+  setSubmitted(false);
+
+  setForm((prev) => ({
+    ...prev,
+    details:
+      `Interested in: ${pkg.title}\n` +
+      `Duration: ${pkg.duration}\n` +
+      `Starting at: ${formatUSD(pkg.priceFrom)}\n\n` +
+      `Preferred dates:\nNumber of travelers:\nBudget (per person):\nNotes:`,
+  }));
+
+  // smooth scroll to contact
+  setTimeout(() => {
+    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+  }, 50);
+};
+ 
   const [menuOpen, setMenuOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [submitted, setSubmitted] = useState(false);
