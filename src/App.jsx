@@ -515,11 +515,11 @@ async function onSubmit(e) {
             const Icon = d.icon;
             return (
               <motion.div key={d.title} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.35 }}>
-                <Card className="h-full">
+                <Card className="h-full overflow-hidden border border-white/10 bg-white/5 transition duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:shadow-[0_20px_60px_-30px_rgba(16,185,129,0.35)]">
                   <div className="p-6">
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex items-start gap-3">
-                        <div className="grid h-11 w-11 place-items-center rounded-2xl bg-zinc-100">
+                        <div className="grid h-11 w-11 place-items-center rounded-2xl border border-white/10 bg-white/5 text-white/80 transition group-hover:border-emerald-500/30">
                           <Icon className="h-5 w-5" />
                         </div>
                         <div>
@@ -536,7 +536,9 @@ async function onSubmit(e) {
       className="h-full w-full object-cover"
       loading="lazy"
     />
-    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+    className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+   <motion.div className="group"></motion.div>
+ 
   </div>
 </div>
 
