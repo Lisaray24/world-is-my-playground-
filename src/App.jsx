@@ -201,6 +201,7 @@ export default function App() {
 };
  
   const [menuOpen, setMenuOpen] = useState(false);
+  const [submittedName, setSubmittedName] = useState("");
   const [search, setSearch] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
@@ -259,11 +260,22 @@ async function onSubmit(e) {
       headers: { Accept: "application/json" },
     });
 
-    if (res.ok) {
-      setSubmitted(true);
-      setForm({ name: "", email: "", phone: "", budget: "", dates: "", details: "" });
-      return;
-    }
+   if (res.ok) {
+  setSubmittedName(form.name);   // 👈 save name first
+  setSubmitted(true);
+
+  setForm({
+    name: "",
+    email: "",
+    phone: "",
+    budget: "",
+    dates: "",
+    details: "",
+  });
+
+  return;
+}
+
 
     const data = await res.json().catch(() => ({}));
     console.error("Formspree error:", data);
@@ -641,10 +653,15 @@ async function onSubmit(e) {
   <div className="p-6">
     {submitted ? (
       <div className="rounded-2xl border border-zinc-200 p-5">
-        <div className="text-base font-semibold">Request received ✅</div>
+       <div className="text-base font-semibold">
+  Thanks{submittedName ? `, ${submittedName}` : ""} — your request has been received ✅
+</div>
+
+
         <div className="mt-2 text-sm text-zinc-600">
-          Thanks! Your request has been sent. Check your email (and spam) for confirmation.
-        </div>
+  I’ve received your request and will personally review it within 24–48 hours.
+</div>
+
 <div className="mt-5 rounded-xl bg-zinc-50 p-4">
   <div className="text-sm font-semibold text-zinc-900">
     What happens next
@@ -663,6 +680,7 @@ async function onSubmit(e) {
             type="button"
             onClick={() => {
               setSubmitted(false);
+              setSubmittedName("");
               setForm({
                 name: "",
                 email: "",
