@@ -645,6 +645,17 @@ async function onSubmit(e) {
         <div className="mt-2 text-sm text-zinc-600">
           Thanks! Your request has been sent. Check your email (and spam) for confirmation.
         </div>
+<div className="mt-5 rounded-xl bg-zinc-50 p-4">
+  <div className="text-sm font-semibold text-zinc-900">
+    What happens next
+  </div>
+  <ul className="mt-2 space-y-1 text-sm text-zinc-600">
+    <li>• I’ll personally review your request within <strong>24–48 hours</strong></li>
+    <li>• I’ll confirm availability, pricing, and the best options for your dates</li>
+    <li>• You’ll receive a <strong>personalized itinerary proposal</strong></li>
+    <li>• We refine the details → book → you enjoy the experience</li>
+  </ul>
+</div>
 
         <div className="mt-4">
           <button
