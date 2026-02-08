@@ -289,7 +289,7 @@ async function onSubmit(e) {
   return (
 <div className="min-h-screen bg-[var(--lux-bg)] text-[var(--lux-ink)]">
       {/* Top bar */}
-      <div className="border-b border-[var(--lux-line)] bg-white/60 backdrop-blur">
+      <div className="border-b border-[var(--lux-line)] bg-white/5 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2 text-sm">
           <div className="flex flex-wrap items-center gap-4">
             <span className="inline-flex items-center gap-2 text-[var(--lux-ink)]/80">
@@ -321,7 +321,7 @@ async function onSubmit(e) {
 
       {/* Header */}
       <img src="/logo.jpg" alt={`${BRAND.name} logo`} />
-     <header className="sticky top-0 z-40 border-b border-[var(--lux-line)] bg-white/70 backdrop-blur">
+     <header className="sticky top-0 z-40 border-b border-[var(--lux-line)] bg-black/70 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <a href="#" className="flex items-center gap-2">
             <div className="h-10 w-10 overflow-hidden rounded-2xl border border-[var(--lux-line)] bg-white shadow-sm">

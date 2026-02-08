@@ -1,14 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap");
 
 :root{
-  --lux-bg: #fbfaf7;        /* soft cream */
-  --lux-panel: rgba(11,11,15,.04);
-  --lux-ink: #0b0b0f;       /* deep charcoal */
-  --lux-muted: rgba(11,11,15,.70);
-  --lux-line: rgba(11,11,15,.10);
+  --lux-bg: #050607;        /* deep luxury black */
+  --lux-panel: rgba(255,255,255,.04);
+  --lux-ink: #f6f7f8;       /* near-white text */
+  --lux-muted: rgba(246,247,248,.70);
+  --lux-line: rgba(246,247,248,.12);
 
-  --lux-emerald: #0f766e;   /* emerald */
-  --lux-emerald2: #10b981;  /* brighter emerald */
+  --lux-emerald: #10b981;
+  --lux-emerald2: #34d399;
 
   --font-sans: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
@@ -19,11 +19,3 @@ body {
   background: var(--lux-bg);
   color: var(--lux-ink);
 }
-.lux-serif {
-  font-family: var(--font-serif);
-}
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-body { background: hotpink !important; }
