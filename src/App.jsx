@@ -419,105 +419,76 @@ async function onSubmit(e) {
       </header>
 
       {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute -top-32 -right-20 h-96 w-96 rounded-full bg-zinc-100 blur-3xl opacity-70" />
-          <div className="absolute -bottom-32 -left-20 h-96 w-96 rounded-full bg-zinc-100 blur-3xl opacity-70" />
-        </div>
-<motion.div {...reveal(0)}>
-  {/* your hero content here */}
-</motion.div>
-<motion.div {...reveal(0.08)}>
-  {/* hero image or hero card */}
-</motion.div>
+     <section className="mx-auto max-w-6xl px-4 py-14 md:py-20">
+  <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:items-center">
+    <div>
+      <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">
+        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500/80" />
+        Concierge travel planning • Detroit-based • Worldwide
+      </div>
 
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-12 md:grid-cols-2 md:py-16">
-          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: easeLuxury }}>
-            <Badge className="border-zinc-200 bg-white">
-              <Sparkles className="mr-1 h-3.5 w-3.5" /> Full-service concierge travel
-            </Badge>
+      <h1 className="mt-5 text-4xl font-semibold tracking-tight text-white md:text-5xl">
+        Luxury travel planning — <span className="text-white/80">without the stress.</span>
+      </h1>
 
-            <h1 className="lux-serif mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
+      <p className="mt-4 max-w-xl text-base leading-relaxed text-white/70">
+        Cruises, adults-only and family-friendly all-inclusives, Europe favorites, and celebration theme trips — curated end-to-end so you can simply show up and enjoy.
+      </p>
 
-              Luxury travel planning — <span className="underline underline-offset-8">without</span> the stress.
-            </h1>
+      <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <Button
+          className="rounded-2xl bg-emerald-600 px-6 py-2 text-white hover:bg-emerald-500 transition-colors"
+          type="button"
+          onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+        >
+          Start Planning My Trip
+        </Button>
 
-            <p className="mt-4 text-zinc-600">
-              All-inclusive getaways, luxury cruises, and destinations worldwide. Tell us what you want — we handle every logistical detail.
-            </p>
+        <Button
+          variant="outline"
+          className="rounded-2xl border-white/15 text-white hover:bg-white/5"
+          type="button"
+          onClick={() => document.querySelector("#packages")?.scrollIntoView({ behavior: "smooth" })}
+        >
+          Explore Featured Trips
+        </Button>
+      </div>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <a href="#contact">
-                <Button className="w-full sm:w-auto">
-                  {BRAND.cta} <ChevronRight className="ml-1 h-4 w-4" />
-                </Button>
-              </a>
-              <a href="#packages">
-                <Button variant="outline" className="w-full sm:w-auto">
-                  Browse packages
-                </Button>
-              </a>
+      <p className="mt-4 text-xs text-white/55">
+        Supplier-paid bookings (no booking fee). Planning fee applies only after 2+ detailed requests with no booking ($50).
+      </p>
+    </div>
+
+    {/* Right-side visual */}
+    <div className="relative">
+      <div className="absolute -inset-4 rounded-[2rem] bg-emerald-500/10 blur-2xl" />
+      <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-6">
+        <div className="text-sm font-semibold text-white">Signature experiences</div>
+        <div className="mt-4 grid gap-3">
+          {[
+            { title: "Luxury Cruises", desc: "Suite options, excursions, seamless logistics" },
+            { title: "All-Inclusive Escapes", desc: "Adults-only or family-friendly, stress-free" },
+            { title: "Europe Favorites", desc: "Italy, Greece, Paris & beyond — curated itineraries" },
+            { title: "Theme Trips", desc: "Birthdays, girls’ trips, anniversaries & more" },
+          ].map((x) => (
+            <div key={x.title} className="rounded-2xl border border-white/10 bg-black/20 p-4">
+              <div className="flex items-center justify-between gap-3">
+                <div className="text-sm font-semibold text-white">{x.title}</div>
+                <span className="text-xs text-emerald-300/80">Request details</span>
+              </div>
+              <div className="mt-1 text-sm text-white/65">{x.desc}</div>
             </div>
-          </motion.div>
-
-          <motion.h2 className="text-2xl font-semibold" {...reveal(0)}>
-  
-</motion.h2>
-
-
-          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.05 }}>
-            <Card className="overflow-hidden">
-              <div className="border-b p-5">
-                <div className="text-lg font-semibold">Concierge planning includes</div>
-                <div className="mt-1 text-sm text-zinc-600">
-                  Flights, hotels/resorts, transfers, excursions, special requests.
-                </div>
-              </div>
-              <div className="p-5">
-                <div className="grid gap-3">
-                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                    <div className="rounded-2xl border border-zinc-200 p-3">
-                      <div className="text-xs text-zinc-500">Travel dates</div>
-                      <div className="mt-1 flex items-center gap-2 text-sm">
-                        <CalendarDays className="h-4 w-4" /> Flexible or fixed
-                      </div>
-                    </div>
-                    <div className="rounded-2xl border border-zinc-200 p-3">
-                      <div className="text-xs text-zinc-500">Budget</div>
-                      <div className="mt-1 text-sm">Value • Mid • Luxury</div>
-                    </div>
-                  </div>
-
-                  <div className="rounded-2xl border border-zinc-200 p-4">
-                    <div className="text-sm font-medium">How we work</div>
-                    <ul className="mt-2 space-y-2 text-sm text-zinc-600">
-                      <li className="flex gap-2">
-                        <ShieldCheck className="mt-0.5 h-4 w-4" /> 2–3 itinerary options
-                      </li>
-                      <li className="flex gap-2">
-                        <ShieldCheck className="mt-0.5 h-4 w-4" /> Transparent pricing & tradeoffs
-                      </li>
-                      <li className="flex gap-2">
-                        <ShieldCheck className="mt-0.5 h-4 w-4" /> Support before and during travel
-                      </li>
-                    </ul>
-                  </div>
-
-                  <a href="#contact">
-                    <Button className="w-full">
-                      Start a request <ChevronRight className="ml-1 h-4 w-4" />
-                    </Button>
-                  </a>
-
-                  <div className="text-xs text-zinc-500">
-                    Planning is $0 when you book with us. After 2+ consultations without booking, a $50 planning fee applies to continue custom planning.
-                  </div>
-                </div>
-              </div>
-            </Card>
-          </motion.div>
+          ))}
         </div>
-      </section>
+
+        <div className="mt-5 rounded-2xl border border-white/10 bg-black/20 p-4">
+          <div className="text-xs font-medium text-white/80">Response time</div>
+          <div className="mt-1 text-sm text-white/65">Replies within 24–48 hours with next steps.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> 
 
       <motion.div
   whileHover={{ y: -4 }}
