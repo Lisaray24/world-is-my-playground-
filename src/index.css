@@ -19,3 +19,6 @@ body {
   background: var(--lux-bg);
   color: var(--lux-ink);
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
