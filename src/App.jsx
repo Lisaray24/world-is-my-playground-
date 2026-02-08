@@ -287,10 +287,7 @@ async function onSubmit(e) {
 }
 
   return (
-   <div
-  className="min-h-screen"
-  style={{ background: "var(--lux-bg)", color: "var(--lux-ink)" }}
-> 
+<div className="min-h-screen bg-[var(--lux-bg)] text-[var(--lux-ink)]">
       {/* Top bar */}
       <div className="border-b bg-zinc-50/70">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2 text-sm">
@@ -554,7 +551,7 @@ async function onSubmit(e) {
       <div className="flex items-start justify-between gap-4">
         <div>
           <div className="text-lg font-semibold">{d.title}</div>
-          <div className="text-sm text-zinc-600">{d.subtitle}</div>
+          <div className="text-sm text-[var(--lux-muted)]">{d.subtitle}</div>
         </div>
         <Badge>From {formatUSD(d.priceFrom)}</Badge>
       </div>
@@ -592,7 +589,7 @@ async function onSubmit(e) {
               <Card key={f.q}>
                 <div className="p-6">
                   <div className="text-base font-semibold">{f.q}</div>
-                  <div className="mt-2 text-sm text-zinc-600">{f.a}</div>
+                  <div className="mt-2 text-sm text-[var(--lux-muted)]">{f.a}</div>
                 </div>
               </Card>
             ))}
@@ -605,18 +602,18 @@ async function onSubmit(e) {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div>
             <h2 className="text-2xl font-semibold tracking-tight">Request a trip</h2>
-            <p className="mt-2 text-zinc-600">Fill this out and we’ll respond with next steps.</p>
+            <p className="mt-2 text-[var(--lux-muted)]">Fill this out and we’ll respond with next steps.</p>
 
             <div className="mt-6 grid gap-3">
-              <Card><div className="p-6"><div className="flex items-center gap-2 text-sm font-medium"><Phone className="h-4 w-4" /> Call or text</div><div className="mt-2 text-sm text-zinc-600">{BRAND.phone}</div></div></Card>
-              <Card><div className="p-6"><div className="flex items-center gap-2 text-sm font-medium"><Mail className="h-4 w-4" /> Email</div><div className="mt-2 text-sm text-zinc-600">{BRAND.email}</div></div></Card>
-              <Card><div className="p-6"><div className="flex items-center gap-2 text-sm font-medium"><MapPin className="h-4 w-4" /> Location</div><div className="mt-2 text-sm text-zinc-600">{BRAND.location}</div></div></Card>
+              <Card><div className="p-6"><div className="flex items-center gap-2 text-sm font-medium"><Phone className="h-4 w-4" /> Call or text</div><div className="mt-2 text-sm text-[var(--lux-muted)]">{BRAND.phone}</div></div></Card>
+              <Card><div className="p-6"><div className="flex items-center gap-2 text-sm font-medium"><Mail className="h-4 w-4" /> Email</div><div className="mt-2 text-sm text-[var(--lux-muted)]">{BRAND.email}</div></div></Card>
+              <Card><div className="p-6"><div className="flex items-center gap-2 text-sm font-medium"><MapPin className="h-4 w-4" /> Location</div><div className="mt-2 text-sm text-[var(--lux-muted)]">{BRAND.location}</div></div></Card>
             </div>
           </div>
 <Card>
   <div className="border-b p-5">
     <div className="text-lg font-semibold">Trip request form</div>
-    <div className="mt-1 text-sm text-zinc-600">
+    <div className="mt-1 text-sm text-[var(--lux-muted)]">
       Submit your trip details and we’ll reply within 24–48 hours.
     </div>
   </div>
@@ -629,7 +626,7 @@ async function onSubmit(e) {
 </div>
 
 
-        <div className="mt-2 text-sm text-zinc-600">
+        <div className="mt-2 text-sm text-[var(--lux-muted)]">
   I’ve received your request and will personally review it within 24–48 hours.
 </div>
 
@@ -637,7 +634,7 @@ async function onSubmit(e) {
   <div className="text-sm font-semibold text-zinc-900">
     What happens next
   </div>
-  <ul className="mt-2 space-y-1 text-sm text-zinc-600">
+  <ul className="mt-2 space-y-1 text-sm text-[var(--lux-muted)]">
     <li>• I’ll personally review your request within <strong>24–48 hours</strong></li>
     <li>• I’ll confirm availability, pricing, and the best options for your dates</li>
     <li>• You’ll receive a <strong>personalized itinerary proposal</strong></li>
@@ -730,7 +727,7 @@ async function onSubmit(e) {
 </section>
 
       <footer className="border-t">
-        <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-zinc-600">
+        <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-[var(--lux-muted)]">
           © {new Date().getFullYear()} {BRAND.name}. All rights reserved.
         </div>
       </footer>
