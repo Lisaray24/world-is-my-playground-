@@ -289,32 +289,29 @@ async function onSubmit(e) {
   return (
 <div className="min-h-screen bg-[var(--lux-bg)] text-[var(--lux-ink)]">
       {/* Top bar */}
-      <div className="border-b bg-zinc-50/70">
+      <div className="border-b border-[var(--lux-line)] bg-white/60 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2 text-sm">
           <div className="flex flex-wrap items-center gap-4">
-            <span className="inline-flex items-center gap-2 text-zinc-700">
+            <span className="inline-flex items-center gap-2 text-[var(--lux-ink)]/80">
               <MapPin className="h-4 w-4" /> {BRAND.location}
             </span>
 <a
-  className="inline-flex items-center gap-2 text-zinc-700 hover:underline"
+  className="inline-flex items-center gap-2 text-[var(--lux-ink)]/80 hover:underline"
   href={`tel:${BRAND.phone}`}
 >
   <Phone className="h-4 w-4" /> {BRAND.phone}
 </a>
             <a
-              className="inline-flex items-center gap-2 text-zinc-700 hover:underline"
+              className="inline-flex items-center gap-2 text-[var(--lux-ink)]/80 hover:underline"
               href={`mailto:${BRAND.email}`}
             >
               <Mail className="h-4 w-4" /> {BRAND.email}
             </a>
           </div>
           <div className="hidden items-center gap-2 md:flex">
-            <Badge>
-              <Badge className="border border-emerald-500/30 bg-emerald-500/10 text-emerald-300">
+           <Badge className="border border-emerald-500/30 bg-emerald-500/10 text-emerald-700">
   Trusted Planning
-</Badge>
-
-            </Badge>
+</Badge> 
             <Badge>
               <Sparkles className="mr-1 h-3.5 w-3.5" /> Concierge Service
             </Badge>
@@ -324,15 +321,11 @@ async function onSubmit(e) {
 
       {/* Header */}
       <img src="/logo.jpg" alt={`${BRAND.name} logo`} />
-     <header className="sticky top-0 z-40 border-b bg-black/70 backdrop-blur">
+     <header className="sticky top-0 z-40 border-b border-[var(--lux-line)] bg-white/70 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <a href="#" className="flex items-center gap-2">
-            <div className="h-10 w-10 overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm">
-  <img
-    src="/logo.jpg"
-    alt={`${BRAND.name} logo`} 
-    className="h-full w-full object-contain p-1"
-  />
+            <div className="h-10 w-10 overflow-hidden rounded-2xl border border-[var(--lux-line)] bg-white shadow-sm">
+
 </div>
 
             <div className="leading-tight">
