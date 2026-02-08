@@ -146,7 +146,7 @@ function Button({ children, variant = "solid", className = "", ...props }) {
 function Badge({ children, className = "" }) {
   return (
     <span
-      className={`inline-flex items-center rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs ${className}`}
+      className={"inline-flex items-center rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-medium text-white/85"}
     >
       {children}
     </span>
@@ -550,10 +550,13 @@ async function onSubmit(e) {
       </div>
 
       <div className="mt-4 flex flex-wrap gap-2">
-        <Badge className="bg-white">{d.duration}</Badge>
-        {d.highlights.map((h) => (
-          <Badge key={h} className="bg-white">{h}</Badge>
-        ))}
+        <Badge className="border-white/15 bg-white/10 text-white/85">{d.duration}</Badge>
+
+{d.highlights.map((h) => (
+  <Badge key={h} className="border-white/15 bg-white/10 text-white/85">
+    {h}
+  </Badge>
+))}
       </div>
 
       <div className="mt-6 flex justify-end">
