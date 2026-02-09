@@ -309,10 +309,10 @@ async function onSubmit(e) {
             </a>
           </div>
           <div className="hidden items-center gap-2 md:flex">
-           <Badge className="border border-emerald-500/30 bg-emerald-500/10 text-emerald-700">
+           <Badge className="border border-emerald-500/30 bg-emerald-500/10 text-white">
   Trusted Planning
 </Badge> 
-            <Badge>
+            <Badge className="text-white">
               <Sparkles className="mr-1 h-3.5 w-3.5" /> Concierge Service
             </Badge>
           </div>
@@ -436,7 +436,7 @@ async function onSubmit(e) {
 
         <Button
           variant="outline"
-          className="rounded-2xl border-white/15 text-white hover:bg-white/5"
+          className="rounded-2xl border-white/15 text-black hover:bg-white/5"
           type="button"
           onClick={() => document.querySelector("#packages")?.scrollIntoView({ behavior: "smooth" })}
         >
@@ -550,12 +550,12 @@ async function onSubmit(e) {
       </div>
 
       <div className="mt-4 flex flex-wrap gap-2">
-  <Badge className="border-white/15 bg-white/10 text-white/90">
+  <Badge className="border-white/15 bg-white/10 text-black">
     {d.duration}
   </Badge>
 
   {d.highlights.map((h) => (
-    <Badge key={h} className="border-white/15 bg-white/10 text-white/85">
+    <Badge key={h} className="border-white/15 bg-white/10 text-black">
       {h}
     </Badge>
   ))}
@@ -586,8 +586,8 @@ async function onSubmit(e) {
             {FAQ.map((f) => (
               <Card key={f.q}>
                 <div className="p-6">
-                  <div className="text-base font-semibold">{f.q}</div>
-                  <div className="mt-2 text-sm text-white/75">{f.a}</div>
+                  <div className="text-base font-semibold text-black">{f.q}</div>
+                  <div className="mt-2 text-sm text-black">{f.a}</div>
                 </div>
               </Card>
             ))}
@@ -600,12 +600,12 @@ async function onSubmit(e) {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div>
             <h2 className="text-2xl font-semibold tracking-tight">Request a trip</h2>
-            <p className="mt-2 text-[var(--lux-muted)]">Fill this out and we’ll respond with next steps.</p>
+            <p className="mt-2 text-white/75">Fill this out and we’ll respond with next steps.</p>
 
             <div className="mt-6 grid gap-3">
-              <Card><div className="p-6"><div className="flex items-center gap-2 text-sm font-medium"><Phone className="h-4 w-4" /> Call or text</div><div className="mt-2 text-sm text-[var(--lux-muted)]">{BRAND.phone}</div></div></Card>
-              <Card><div className="p-6"><div className="flex items-center gap-2 text-sm font-medium"><Mail className="h-4 w-4" /> Email</div><div className="mt-2 text-sm text-[var(--lux-muted)]">{BRAND.email}</div></div></Card>
-              <Card><div className="p-6"><div className="flex items-center gap-2 text-sm font-medium"><MapPin className="h-4 w-4" /> Location</div><div className="mt-2 text-sm text-[var(--lux-muted)]">{BRAND.location}</div></div></Card>
+              <Card><div className="p-6"><div className="flex items-center gap-2 text-sm font-medium"><Phone className="h-4 w-4" /> Call or text</div><div className="mt-2 text-sm text-black">{BRAND.phone}</div></div></Card>
+              <Card><div className="p-6"><div className="flex items-center gap-2 text-sm font-medium"><Mail className="h-4 w-4" /> Email</div><div className="mt-2 text-sm text-black">{BRAND.email}</div></div></Card>
+              <Card><div className="p-6"><div className="flex items-center gap-2 text-sm font-medium"><MapPin className="h-4 w-4" /> Location</div><div className="mt-2 text-sm text-black">{BRAND.location}</div></div></Card>
             </div>
           </div>
 <Card>
