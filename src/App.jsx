@@ -550,14 +550,16 @@ async function onSubmit(e) {
       </div>
 
       <div className="mt-4 flex flex-wrap gap-2">
-        <Badge className="border-white/15 bg-white/10 text-white/85">{d.duration}</Badge>
-
-{d.highlights.map((h) => (
-  <Badge key={h} className="border-white/15 bg-white/10 text-white/85">
-    {h}
+  <Badge className="border-white/15 bg-white/10 text-white/90">
+    {d.duration}
   </Badge>
-))}
-      </div>
+
+  {d.highlights.map((h) => (
+    <Badge key={h} className="border-white/15 bg-white/10 text-white/85">
+      {h}
+    </Badge>
+  ))}
+</div>
 
       <div className="mt-6 flex justify-end">
         <a href="#contact">
@@ -577,7 +579,7 @@ async function onSubmit(e) {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="border-t bg-zinc-50/60">
+      <section id="faq" className="border-t border-white/10 bg-white/5">  
         <div className="mx-auto max-w-6xl px-4 py-12">
           <h2 className="text-2xl font-semibold tracking-tight">FAQ</h2>
           <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -585,7 +587,7 @@ async function onSubmit(e) {
               <Card key={f.q}>
                 <div className="p-6">
                   <div className="text-base font-semibold">{f.q}</div>
-                  <div className="mt-2 text-sm text-[var(--lux-muted)]">{f.a}</div>
+                  <div className="mt-2 text-sm text-white/75">{f.a}</div>
                 </div>
               </Card>
             ))}
