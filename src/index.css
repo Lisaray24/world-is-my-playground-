@@ -22,3 +22,23 @@ body {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Dark text for light bubbles ONLY */
+.rounded-full:not(.text-white),
+[class*="badge"]:not(.text-white),
+[class*="pill"]:not(.text-white) {
+  color: #18181b !important; /* luxury charcoal */
+}
+/* Light bubbles → dark luxury text */
+.bg-white,
+.bg-zinc-100,
+.bg-zinc-50 {
+  color: #18181b;
+}
+
+/* Dark bubbles → light luxury text */
+.bg-black,
+.bg-zinc-900,
+.bg-emerald-600,
+.bg-emerald-700 {
+  color: #f8fafc;
+}
