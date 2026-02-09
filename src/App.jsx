@@ -309,10 +309,10 @@ async function onSubmit(e) {
             </a>
           </div>
           <div className="hidden items-center gap-2 md:flex">
-           <Badge className="border border-emerald-500/30 bg-emerald-500/10 text-white">
+           <Badge className="bg-white text-black border border-zinc-200">
   Trusted Planning
 </Badge> 
-            <Badge className="text-white">
+            <Badge className="bg-white text-black border border-zinc-200">
               <Sparkles className="mr-1 h-3.5 w-3.5" /> Concierge Service
             </Badge>
           </div>
@@ -412,10 +412,10 @@ async function onSubmit(e) {
      <section className="mx-auto max-w-6xl px-4 py-14 md:py-20">
   <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:items-center">
     <div>
-      <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">
-        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500/80" />
-        Concierge travel planning • Detroit-based • Worldwide
-      </div>
+      <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/60 px-4 py-1.5 text-xs font-medium text-white backdrop-blur">
+  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+  Concierge travel planning • Detroit-based • Worldwide
+</div>
 
       <h1 className="mt-5 text-4xl font-semibold tracking-tight text-white md:text-5xl">
         Luxury travel planning — <span className="text-white/80">without the stress.</span>
