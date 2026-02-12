@@ -12,6 +12,7 @@ import {
   Star,
   Umbrella,
   Ship,
+  Users,   // ← ADD THIS LINE
 } from "lucide-react";
 
 import { motion, useReducedMotion } from "framer-motion";
