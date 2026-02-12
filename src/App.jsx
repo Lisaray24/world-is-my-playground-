@@ -30,48 +30,6 @@ const BRAND = {
   location: "Detroit, MI",
   cta: "Plan My Trip",
 };
-
-{/* Trust */}
-<section id="trust" className="mx-auto max-w-6xl px-4 py-12">
-  <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-    <Card className="bg-white/5 border border-white/10">
-      <div className="p-6">
-        <div className="flex items-center gap-2 text-sm font-semibold text-white">
-          <ShieldCheck className="h-4 w-4 text-emerald-400" />
-          Concierge-level planning
-        </div>
-        <p className="mt-2 text-sm text-white/75">
-          I handle the logistics end-to-end: resort/cruise selection, transfers, excursions, and itinerary timing—so you don’t have to.
-        </p>
-      </div>
-    </Card>
-
-    <Card className="bg-white/5 border border-white/10">
-      <div className="p-6">
-        <div className="flex items-center gap-2 text-sm font-semibold text-white">
-          <CalendarDays className="h-4 w-4 text-emerald-400" />
-          Fast, clear next steps
-        </div>
-        <p className="mt-2 text-sm text-white/75">
-          You’ll receive curated options and next steps within <span className="text-white">24–48 hours</span> after submitting your request.
-        </p>
-      </div>
-    </Card>
-
-    <Card className="bg-white/5 border border-white/10">
-      <div className="p-6">
-        <div className="flex items-center gap-2 text-sm font-semibold text-white">
-          <Star className="h-4 w-4 text-emerald-400" />
-          Transparent booking style
-        </div>
-        <p className="mt-2 text-sm text-white/75">
-          No fee on supplier-paid bookings. A $50 planning fee applies only after 2+ detailed requests without booking.
-        </p>
-      </div>
-    </Card>
-  </div>
-</section>
-
 const PACKAGES = [
   {
     title: "All-Inclusive Escapes",
@@ -268,6 +226,7 @@ export default function App() {
  
   const [menuOpen, setMenuOpen] = useState(false);
   const [submittedName, setSubmittedName] = useState("");
+  const [selectedTrip, setSelectedTrip] = useState(null);
   const [search, setSearch] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
@@ -338,6 +297,21 @@ async function onSubmit(e) {
     dates: "",
     details: "",
   });
+
+  function selectTrip(d) {
+  setSelectedTrip(d);
+
+  setForm((prev) => ({
+    ...prev,
+    details:
+      `Selected trip: ${d.title}\n` +
+      `Duration: ${d.duration}\n` +
+      `Highlights: ${d.highlights?.join(", ")}\n\n` +
+      "Tell me what you’d like to customize:",
+  }));
+
+  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+}
 
   return;
 }
@@ -553,7 +527,47 @@ async function onSubmit(e) {
 >
   <Card>...</Card>
 </motion.div>
+{/* Trust */}
+<section id="trust" className="mx-auto max-w-6xl px-4 py-12">
+  <div className="flex flex-col gap-2">
+    <h2 className="text-2xl font-semibold tracking-tight text-white">Why travelers trust us</h2>
+    <p className="max-w-2xl text-white/75">
+      Luxury planning without the stress—curated options, clear next steps, and full concierge support.
+    </p>
+  </div>
 
+  <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+    {/* Card 1 */}
+    <div className="rounded-3xl border border-white/10 bg-black/40 p-6 shadow-lg shadow-black/20 backdrop-blur">
+      <div className="flex items-center gap-2 text-sm font-semibold text-white">
+        <ShieldCheck className="h-4 w-4 text-emerald-400" /> Concierge management
+      </div>
+      <p className="mt-2 text-sm text-white/75">
+        Hotels, transfers, excursions, and timing—handled end-to-end so you can enjoy the trip.
+      </p>
+    </div>
+
+    {/* Card 2 */}
+    <div className="rounded-3xl border border-white/10 bg-black/40 p-6 shadow-lg shadow-black/20 backdrop-blur">
+      <div className="flex items-center gap-2 text-sm font-semibold text-white">
+        <CalendarDays className="h-4 w-4 text-emerald-400" /> Fast next steps
+      </div>
+      <p className="mt-2 text-sm text-white/75">
+        Submit a request and receive curated options within <span className="text-white">24–48 hours</span>.
+      </p>
+    </div>
+
+    {/* Card 3 */}
+    <div className="rounded-3xl border border-white/10 bg-black/40 p-6 shadow-lg shadow-black/20 backdrop-blur">
+      <div className="flex items-center gap-2 text-sm font-semibold text-white">
+        <Star className="h-4 w-4 text-emerald-400" /> Transparent booking style
+      </div>
+      <p className="mt-2 text-sm text-white/75">
+        No fee on supplier-paid bookings. A $50 planning fee applies only after 2+ detailed requests without booking.
+      </p>
+    </div>
+  </div>
+</section>
 
       {/* Packages */}
       <section id="packages" className="mx-auto max-w-6xl px-4 py-12">
@@ -587,12 +601,15 @@ async function onSubmit(e) {
 >
   <Card className="group overflow-hidden">
     <Card
-  className="h-full cursor-pointer transition hover:shadow-lg"
+  className={`h-full cursor-pointer transition ${
+    selectedTrip?.title === d.title ? "ring-2 ring-emerald-500/60" : "hover:shadow-lg"
+  }`}
   onClick={() => selectTrip(d)}
   role="button"
   tabIndex={0}
   onKeyDown={(e) => (e.key === "Enter" ? selectTrip(d) : null)}
-></Card>
+>
+</Card>
 
     {/* IMAGE */}
     <div className="relative h-44 w-full">
@@ -717,7 +734,22 @@ async function onSubmit(e) {
     <li>• We refine the details → book → you enjoy the experience</li>
   </ul>
 </div>
+{selectedTrip && !submitted && (
+  <div className="mb-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-white/80">
+    <div className="font-semibold text-white">Selected trip</div>
+    <div className="mt-1">
+      {selectedTrip.title} <span className="text-white/60">({selectedTrip.duration})</span>
+    </div>
 
+    <button
+      type="button"
+      className="mt-3 rounded-xl border border-white/10 bg-black/40 px-3 py-2 text-xs text-white hover:bg-black/55"
+      onClick={() => setSelectedTrip(null)}
+    >
+      Clear selection
+    </button>
+  </div>
+)}
         <div className="mt-4">
           <button
             className="rounded-2xl bg-zinc-900 px-4 py-2 text-white hover:bg-zinc-800"
