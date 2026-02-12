@@ -29,6 +29,48 @@ const BRAND = {
   location: "Detroit, MI",
   cta: "Plan My Trip",
 };
+
+{/* Trust */}
+<section id="trust" className="mx-auto max-w-6xl px-4 py-12">
+  <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+    <Card className="bg-white/5 border border-white/10">
+      <div className="p-6">
+        <div className="flex items-center gap-2 text-sm font-semibold text-white">
+          <ShieldCheck className="h-4 w-4 text-emerald-400" />
+          Concierge-level planning
+        </div>
+        <p className="mt-2 text-sm text-white/75">
+          I handle the logistics end-to-end: resort/cruise selection, transfers, excursions, and itinerary timing—so you don’t have to.
+        </p>
+      </div>
+    </Card>
+
+    <Card className="bg-white/5 border border-white/10">
+      <div className="p-6">
+        <div className="flex items-center gap-2 text-sm font-semibold text-white">
+          <CalendarDays className="h-4 w-4 text-emerald-400" />
+          Fast, clear next steps
+        </div>
+        <p className="mt-2 text-sm text-white/75">
+          You’ll receive curated options and next steps within <span className="text-white">24–48 hours</span> after submitting your request.
+        </p>
+      </div>
+    </Card>
+
+    <Card className="bg-white/5 border border-white/10">
+      <div className="p-6">
+        <div className="flex items-center gap-2 text-sm font-semibold text-white">
+          <Star className="h-4 w-4 text-emerald-400" />
+          Transparent booking style
+        </div>
+        <p className="mt-2 text-sm text-white/75">
+          No fee on supplier-paid bookings. A $50 planning fee applies only after 2+ detailed requests without booking.
+        </p>
+      </div>
+    </Card>
+  </div>
+</section>
+
 const PACKAGES = [
   {
     title: "All-Inclusive Escapes",
@@ -60,6 +102,18 @@ const PACKAGES = [
     duration: "7–12 nights",
     highlights: ["Custom routing", "Handpicked stays", "Local experiences"],
   },
+
+ {
+  title: "Group Travel & Celebrations",
+  subtitle: "Birthdays, weddings, retreats, and friends’ trips",
+  icon: Users, // you'll add this import
+  priceFrom: 0,
+  image: "/packages/group.jpg",
+  duration: "Flexible dates",
+  highlights: ["Room blocks", "Group rates", "Shared itinerary planning"],
+  badge: "Group Travel",
+}, 
+
   {
     title: "Honeymoons & Celebrations",
     subtitle: "Milestones planned like a movie",
@@ -169,6 +223,17 @@ function Textarea(props) {
       className={`w-full rounded-2xl border border-zinc-300 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-zinc-300 ${props.className || ""}`}
     />
   );
+}
+
+function selectTrip(d) {
+  // Prefill the form with the chosen package
+  setForm((prev) => ({
+    ...prev,
+    details: `Interested in: ${d.title}\nDuration: ${d.duration}\nHighlights: ${d.highlights?.join(", ")}\n\nTell me what you'd like to customize:`,
+  }));
+
+  // Optional: also focus the user into contact section
+  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
 }
 
 function StarRow({ rating = 5 }) {
@@ -520,6 +585,13 @@ async function onSubmit(e) {
   transition={{ duration: 0.35 }}
 >
   <Card className="group overflow-hidden">
+    <Card
+  className="h-full cursor-pointer transition hover:shadow-lg"
+  onClick={() => selectTrip(d)}
+  role="button"
+  tabIndex={0}
+  onKeyDown={(e) => (e.key === "Enter" ? selectTrip(d) : null)}
+></Card>
 
     {/* IMAGE */}
     <div className="relative h-44 w-full">
@@ -563,9 +635,14 @@ async function onSubmit(e) {
 
       <div className="mt-6 flex justify-end">
         <a href="#contact">
-          <Button variant="outline">
-            Request this trip <ChevronRight className="ml-1 h-4 w-4" />
-          </Button>
+          <Button
+  variant="outline"
+  className="w-full sm:w-auto"
+  type="button"
+  onClick={() => selectTrip(d)}
+>
+  Request this trip <ChevronRight className="ml-1 h-4 w-4" />
+</Button>
         </a>
       </div>
     </div>
@@ -652,6 +729,7 @@ async function onSubmit(e) {
                 email: "",
                 phone: "",
                 budget: "",
+                groupSize: "",
                 dates: "",
                 details: "",
               });
@@ -693,6 +771,12 @@ async function onSubmit(e) {
           value={form.budget}
           onChange={(e) => setForm({ ...form, budget: e.target.value })}
         />
+        <Input
+  name="groupSize"
+  placeholder="Group size (optional)"
+  value={form.groupSize || ""}
+  onChange={(e) => setForm({ ...form, groupSize: e.target.value })}
+/>
 
         <Input
           name="dates"
