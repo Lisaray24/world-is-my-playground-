@@ -132,8 +132,8 @@ function formatUSD(n) {
 
 function Card({ children, className = "" }) {
   return ( 
-    <div className={`rounded-3xl border border-zinc-200/60 bg-white shadow-md shadow-zinc-200/40 ${className}`}
-><div className="h-px w-full bg-emerald-500/20 my-8" />
+    <div className="rounded-3xl border border-zinc-200/60 bg-white shadow-md shadow-zinc-200/40">
+<div className="h-px w-full bg-emerald-500/20 my-8" />
 
       {children}
     </div>
@@ -640,15 +640,18 @@ async function onSubmit(e) {
       </div>
 
       <div className="mt-4 flex flex-wrap gap-2">
-  <Badge className="border-white/15 bg-white/10 text-black">
-    {d.duration}
-  </Badge>
+ <span className="inline-flex items-center rounded-full bg-white px-2 py-0.5 text-[11px] font-medium text-zinc-800">
+  {d.duration}
+</span>
 
-  {d.highlights.map((h) => (
-    <Badge key={h} className="border-white/15 bg-white/10 text-black">
-      {h}
-    </Badge>
-  ))}
+{d.highlights.map((h) => (
+  <span
+    key={h}
+    className="inline-flex items-center rounded-full bg-white px-2 py-0.5 text-[11px] font-medium text-zinc-800"
+  >
+    {h}
+  </span>
+))}
 </div>
 
       <div className="mt-6 flex justify-end">
