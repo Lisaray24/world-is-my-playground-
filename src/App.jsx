@@ -599,7 +599,8 @@ async function onSubmit(e) {
   viewport={{ once: true, amount: 0.2 }}
   transition={{ duration: 0.35 }}
 >
-  <Card className="group overflow-hidden">
+  <Card className="h-full overflow-hidden rounded-2xl border border-zinc-200/70 bg-white shadow-sm">
+  <div className="p-4"></div>
     <Card
   className={`h-full cursor-pointer transition ${
     selectedTrip?.title === d.title ? "ring-2 ring-emerald-500/60" : "hover:shadow-lg"
