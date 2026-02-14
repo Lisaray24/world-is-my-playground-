@@ -144,7 +144,7 @@ function Button({ children, variant = "solid", className = "", ...props }) {
   const base =
     "inline-flex items-center justify-center rounded-2xl px-5 py-2.5 ...";
   const solid =
-  "bg-zinc-950 text-white hover:bg-black shadow-sm hover:shadow-md";
+  "bg-zinc-950 text-[var(--lux-muted)] hover:bg-white shadow-sm hover:shadow-md";
   const outline = "border border-zinc-300 bg-white hover:bg-zinc-50 text-zinc-900";
   return (
     <button
@@ -159,7 +159,7 @@ function Button({ children, variant = "solid", className = "", ...props }) {
 function Badge({ children, className = "" }) {
   return (
     <span
-      className={"inline-flex items-center rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-medium text-white/85"}
+      className={"inline-flex items-center rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-medium text-[var(--lux-muted)]"}
     >
       {children}
     </span>
@@ -329,8 +329,8 @@ async function onSubmit(e) {
   return (
 <div className="min-h-screen bg-[var(--lux-bg)] text-[var(--lux-ink)]">
       {/* Top bar */}
-      <div className="border-b border-[var(--lux-line)] bg-white/5 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2 text-sm">
+      <div className="border-b border-white/10 bg-black/70">
+  <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2 text-sm text-white/80">
           <div className="flex flex-wrap items-center gap-4">
             <span className="inline-flex items-center gap-2 text-[var(--lux-ink)]/80">
               <MapPin className="h-4 w-4" /> {BRAND.location}
@@ -342,26 +342,30 @@ async function onSubmit(e) {
   <Phone className="h-4 w-4" /> {BRAND.phone}
 </a>
             <a
-              className="inline-flex items-center gap-2 text-[var(--lux-ink)]/80 hover:underline"
+              className="inline-flex items-center gap-2 hover:text-white"
               href={`mailto:${BRAND.email}`}
             >
               <Mail className="h-4 w-4" /> {BRAND.email}
             </a>
           </div>
           <div className="hidden items-center gap-2 md:flex">
-           <Badge className="bg-white text-black border border-zinc-200">
-  Trusted Planning
-</Badge> 
-            <Badge className="bg-white text-black border border-zinc-200">
-              <Sparkles className="mr-1 h-3.5 w-3.5" /> Concierge Service
-            </Badge>
+           <div className="hidden items-center gap-2 md:flex">
+  <span className="inline-flex items-center rounded-full border border-white/30 bg-white px-3 py-1 text-xs font-semibold text-zinc-900 shadow-sm">
+    Trusted Planning
+  </span>
+
+  <span className="inline-flex items-center rounded-full border border-white/30 bg-white px-3 py-1 text-xs font-semibold text-zinc-900 shadow-sm">
+    <Sparkles className="mr-1 h-3.5 w-3.5 text-emerald-700" />
+    Concierge Service
+  </span>
+</div>
           </div>
         </div>
       </div>
 
       {/* Header */}
       <img src="/logo.jpg" alt={`${BRAND.name} logo`} />
-     <header className="sticky top-0 z-40 border-b border-[var(--lux-line)] bg-black/70 backdrop-blur">
+     <header className="sticky top-0 z-40 border-b border-white/10 bg-black/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <a href="#" className="flex items-center gap-2">
             <div className="h-10 w-10 overflow-hidden rounded-2xl border border-[var(--lux-line)] bg-white shadow-sm">
@@ -379,7 +383,7 @@ async function onSubmit(e) {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm text-zinc-200 hover:text-white"
+                className="text-sm text-zinc-200 hover:text-[var(--lux-muted)]"
               >
                 {item.label}
               </a>
@@ -395,7 +399,7 @@ async function onSubmit(e) {
     whileTap={prefersReducedMotion ? {} : { y: 0 }}
     transition={{ duration: 0.25, ease: easeLuxury }}
   >
-    <Button className="rounded-2xl bg-emerald-600 px-5 py-2 text-white hover:bg-emerald-500 transition-colors">
+    <Button className="rounded-2xl bg-emerald-600 px-5 py-2 text-[var(--lux-muted)] hover:bg-emerald-500 transition-colors">
       {BRAND.cta}
     </Button>
   </motion.a>
@@ -417,7 +421,7 @@ async function onSubmit(e) {
 
   {/* Mobile menu toggle */}
   <button
-    className="md:hidden rounded-2xl border border-white/15 bg-white/5 px-3 py-2 text-sm text-white/80 hover:text-white"
+    className="md:hidden rounded-2xl border border-white/15 bg-white px-3 py-2 text-sm text-[var(--lux-muted)] hover:text-[var(--lux-muted)]"
     onClick={() => setMenuOpen((s) => !s)}
     aria-expanded={menuOpen}
   >
@@ -449,122 +453,47 @@ async function onSubmit(e) {
       </header>
 
       {/* Hero */}
-     <section className="mx-auto max-w-6xl px-4 py-14 md:py-20">
-  <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:items-center">
+<section className="mx-auto max-w-6xl px-4 py-12 md:py-16">
+  <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-center">
+    {/* Left: Copy */}
     <div>
       <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/60 px-4 py-1.5 text-xs font-medium text-white backdrop-blur">
   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
   Concierge travel planning • Detroit-based • Worldwide
 </div>
 
-      <h1 className="mt-5 text-4xl font-semibold tracking-tight text-white md:text-5xl">
-        Luxury travel planning — <span className="text-white/80">without the stress.</span>
+      <h1 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
+        Luxury travel planning—without the stress.
       </h1>
 
-      <p className="mt-4 max-w-xl text-base leading-relaxed text-white/70">
-        Cruises, adults-only and family-friendly all-inclusives, Europe favorites, and celebration theme trips — curated end-to-end so you can simply show up and enjoy.
+      <p className="mt-4 text-[var(--lux-muted)]">
+        All-inclusive escapes, adults-only cruises, Europe favorites, and theme trips—curated and managed end-to-end.
       </p>
 
-      <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-        <Button
-          className="rounded-2xl bg-emerald-600 px-6 py-2 text-white hover:bg-emerald-500 transition-colors"
-          type="button"
-          onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-        >
-          Start Planning My Trip
-        </Button>
-
-        <Button
-          variant="outline"
-          className="rounded-2xl border-white/15 text-black hover:bg-white/5"
-          type="button"
-          onClick={() => document.querySelector("#packages")?.scrollIntoView({ behavior: "smooth" })}
-        >
-          Explore Featured Trips
-        </Button>
-      </div>
-
-      <p className="mt-4 text-xs text-white/55">
-        Supplier-paid bookings (no booking fee). Planning fee applies only after 2+ detailed requests with no booking ($50).
-      </p>
-    </div>
-
-    {/* Right-side visual */}
-    <div className="relative">
-      <div className="absolute -inset-4 rounded-[2rem] bg-emerald-500/10 blur-2xl" />
-      <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-6">
-        <div className="text-sm font-semibold text-white">Signature experiences</div>
-        <div className="mt-4 grid gap-3">
-          {[
-            { title: "Luxury Cruises", desc: "Suite options, excursions, seamless logistics" },
-            { title: "All-Inclusive Escapes", desc: "Adults-only or family-friendly, stress-free" },
-            { title: "Europe Favorites", desc: "Italy, Greece, Paris & beyond — curated itineraries" },
-            { title: "Theme Trips", desc: "Birthdays, girls’ trips, anniversaries & more" },
-          ].map((x) => (
-            <div key={x.title} className="rounded-2xl border border-white/10 bg-black/20 p-4">
-              <div className="flex items-center justify-between gap-3">
-                <div className="text-sm font-semibold text-white">{x.title}</div>
-                <span className="text-xs text-emerald-300/80">Request details</span>
-              </div>
-              <div className="mt-1 text-sm text-white/65">{x.desc}</div>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-5 rounded-2xl border border-white/10 bg-black/20 p-4">
-          <div className="text-xs font-medium text-white/80">Response time</div>
-          <div className="mt-1 text-sm text-white/65">Replies within 24–48 hours with next steps.</div>
-        </div>
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+        <a href="#packages">
+          <button className="w-full rounded-2xl bg-emerald-700 px-5 py-3 text-sm font-semibold text-white hover:bg-emerald-600 transition">
+            Explore Trips
+          </button>
+        </a>
+        <a href="#contact">
+          <button className="w-full rounded-2xl border border-[var(--lux-line)] bg-white px-5 py-3 text-sm font-semibold hover:bg-zinc-50 transition">
+            Request a Quote
+          </button>
+        </a>
       </div>
     </div>
-  </div>
-</section> 
 
-      <motion.div
-  whileHover={{ y: -4 }}
-  transition={{ duration: 0.7, ease: easeLuxury }}
-
->
-  <Card>...</Card>
-</motion.div>
-{/* Trust */}
-<section id="trust" className="mx-auto max-w-6xl px-4 py-12">
-  <div className="flex flex-col gap-2">
-    <h2 className="text-2xl font-semibold tracking-tight text-white">Why travelers trust us</h2>
-    <p className="max-w-2xl text-white/75">
-      Luxury planning without the stress—curated options, clear next steps, and full concierge support.
-    </p>
-  </div>
-
-  <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
-    {/* Card 1 */}
-    <div className="rounded-3xl border border-white/10 bg-black/40 p-6 shadow-lg shadow-black/20 backdrop-blur">
-      <div className="flex items-center gap-2 text-sm font-semibold text-white">
-        <ShieldCheck className="h-4 w-4 text-emerald-400" /> Concierge management
+    {/* Right: Quick quote card */}
+    <div className="rounded-3xl border border-[var(--lux-line)] bg-white p-6 shadow-sm">
+      <div className="text-lg font-semibold">Get a quick quote</div>
+      <div className="mt-1 text-sm text-[var(--lux-muted)]">
+        Tell us what you want—receive curated options in 24–48 hours.
       </div>
-      <p className="mt-2 text-sm text-white/75">
-        Hotels, transfers, excursions, and timing—handled end-to-end so you can enjoy the trip.
-      </p>
-    </div>
 
-    {/* Card 2 */}
-    <div className="rounded-3xl border border-white/10 bg-black/40 p-6 shadow-lg shadow-black/20 backdrop-blur">
-      <div className="flex items-center gap-2 text-sm font-semibold text-white">
-        <CalendarDays className="h-4 w-4 text-emerald-400" /> Fast next steps
+      <div className="mt-4 grid gap-3">
+        {/* (keep your existing inputs or quick fields here) */}
       </div>
-      <p className="mt-2 text-sm text-white/75">
-        Submit a request and receive curated options within <span className="text-white">24–48 hours</span>.
-      </p>
-    </div>
-
-    {/* Card 3 */}
-    <div className="rounded-3xl border border-white/10 bg-black/40 p-6 shadow-lg shadow-black/20 backdrop-blur">
-      <div className="flex items-center gap-2 text-sm font-semibold text-white">
-        <Star className="h-4 w-4 text-emerald-400" /> Transparent booking style
-      </div>
-      <p className="mt-2 text-sm text-white/75">
-        No fee on supplier-paid bookings. A $50 planning fee applies only after 2+ detailed requests without booking.
-      </p>
     </div>
   </div>
 </section>
@@ -613,7 +542,7 @@ async function onSubmit(e) {
 </Card>
 
     {/* IMAGE */}
-    <div className="relative h-44 w-full">
+    <div className="relative max-h-44 w-full">
       <img
         src={d.image}
         alt={d.title}
@@ -624,7 +553,7 @@ async function onSubmit(e) {
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
       {d.badge && (
-        <div className="absolute left-3 top-3 z-10 rounded-full bg-black/70 px-3 py-1 text-xs font-medium text-white backdrop-blur">
+        <div className="absolute left-3 top-3 z-10 rounded-full bg-black/70 px-3 py-1 text-xs font-medium text-[var(--lux-ink)] backdrop-blur">
           {d.badge}
         </div>
       )}
@@ -678,15 +607,15 @@ async function onSubmit(e) {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="border-t border-white/10 bg-white/5">  
+      <section id="faq" className="border-t border-[var(--lux-line)] bg-white">  
         <div className="mx-auto max-w-6xl px-4 py-12">
           <h2 className="text-2xl font-semibold tracking-tight">FAQ</h2>
           <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
             {FAQ.map((f) => (
               <Card key={f.q}>
                 <div className="p-6">
-                  <div className="text-base font-semibold text-black">{f.q}</div>
-                  <div className="mt-2 text-sm text-black">{f.a}</div>
+                  <div className="text-base font-semibold text-[var(--lux-ink)]">{f.q}</div>
+                  <div className="mt-2 text-sm text-[var(--lux-muted)]">{f.a}</div>
                 </div>
               </Card>
             ))}
@@ -699,7 +628,7 @@ async function onSubmit(e) {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div>
             <h2 className="text-2xl font-semibold tracking-tight">Request a trip</h2>
-            <p className="mt-2 text-white/75">Fill this out and we’ll respond with next steps.</p>
+            <p className="mt-2 text-[var(--lux-muted)]">Fill this out and we’ll respond with next steps.</p>
 
             <div className="mt-6 grid gap-3">
               <Card><div className="p-6"><div className="flex items-center gap-2 text-sm font-medium"><Phone className="h-4 w-4" /> Call or text</div><div className="mt-2 text-sm text-black">{BRAND.phone}</div></div></Card>
@@ -739,15 +668,15 @@ async function onSubmit(e) {
   </ul>
 </div>
 {selectedTrip && !submitted && (
-  <div className="mb-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-white/80">
-    <div className="font-semibold text-white">Selected trip</div>
+  <div className="mb-4 rounded-2xl border border-[var(--lux-line)] bg-white p-4 text-sm text-[var(--lux-muted)]">
+    <div className="font-semibold text-[var(--lux-ink)]">Selected trip</div>
     <div className="mt-1">
       {selectedTrip.title} <span className="text-white/60">({selectedTrip.duration})</span>
     </div>
 
     <button
       type="button"
-      className="mt-3 rounded-xl border border-white/10 bg-black/40 px-3 py-2 text-xs text-white hover:bg-black/55"
+      className="mt-3 rounded-xl border border-[var(--lux-line)] bg-white shadow-sm px-3 py-2 text-xstext-[var(--lux-ink)]  hover:bg-black/55"
       onClick={() => setSelectedTrip(null)}
     >
       Clear selection
@@ -756,7 +685,7 @@ async function onSubmit(e) {
 )}
         <div className="mt-4">
           <button
-            className="rounded-2xl bg-zinc-900 px-4 py-2 text-white hover:bg-zinc-800"
+            className="rounded-2xl bg-zinc-900 px-4 py-2 text-[var(--lux-ink)] hover:bg-zinc-800"
             type="button"
             onClick={() => {
               setSubmitted(false);
@@ -831,7 +760,7 @@ async function onSubmit(e) {
 />
 
 <button
-  className="mt-2 rounded-2xl bg-zinc-900 px-4 py-2 text-white hover:bg-zinc-800"
+  className="mt-2 rounded-2xl bg-zinc-900 px-4 py-2 text-[var(--lux-ink)] hover:bg-zinc-800"
   type="submit"
 >
   Send request
