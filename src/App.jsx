@@ -342,7 +342,7 @@ async function onSubmit(e) {
   <Phone className="h-4 w-4" /> {BRAND.phone}
 </a>
             <a
-              className="inline-flex items-center gap-2 hover:text-white"
+              className="inline-flex items-center gap-2 hover text-[var(--lux-ink)]:"
               href={`mailto:${BRAND.email}`}
             >
               <Mail className="h-4 w-4" /> {BRAND.email}
@@ -365,7 +365,7 @@ async function onSubmit(e) {
 
       {/* Header */}
       <img src="/logo.jpg" alt={`${BRAND.name} logo`} />
-     <header className="sticky top-0 z-40 border-b border-white/10 bg-black/80 backdrop-blur">
+     <header className="sticky top-0 z-40 border-b border-white/10 bg-black/70 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <a href="#" className="flex items-center gap-2">
             <div className="h-10 w-10 overflow-hidden rounded-2xl border border-[var(--lux-line)] bg-white shadow-sm">
@@ -457,7 +457,7 @@ async function onSubmit(e) {
   <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-center">
     {/* Left: Copy */}
     <div>
-      <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/60 px-4 py-1.5 text-xs font-medium text-white backdrop-blur">
+      <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/60 px-4 py-1.5 text-xs font-medium text-[var(--lux-ink)] backdrop-blur">
   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
   Concierge travel planning • Detroit-based • Worldwide
 </div>
@@ -472,7 +472,7 @@ async function onSubmit(e) {
 
       <div className="mt-6 flex flex-col gap-3 sm:flex-row">
         <a href="#packages">
-          <button className="w-full rounded-2xl bg-emerald-700 px-5 py-3 text-sm font-semibold text-white hover:bg-emerald-600 transition">
+          <button className="w-full rounded-2xl bg-emerald-700 px-5 py-3 text-sm font-semibold text-[var(--lux-ink)] hover:bg-emerald-600 transition">
             Explore Trips
           </button>
         </a>
@@ -505,7 +505,7 @@ async function onSubmit(e) {
            <h2 className="text-2xl font-semibold tracking-tight">
   Featured Trips
 </h2>
-<p className="mt-1 text-white/70">
+<p className="mt-1 text-sm text-[var(--lux-muted)]">
   Curated options you can customize — dates, room types, and travel style.
 </p>
           </div>
@@ -518,108 +518,86 @@ async function onSubmit(e) {
         </div>
 
         <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
-          {filteredPACKAGES.map((d) => {
-            const Icon = d.icon;
-            return (
-              <motion.div
-  key={d.title}
-  initial={{ opacity: 0, y: 10 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true, amount: 0.2 }}
-  transition={{ duration: 0.35 }}
->
-  <Card className="h-full overflow-hidden rounded-2xl border border-zinc-200/70 bg-white shadow-sm">
-  <div className="p-4"></div>
-    <Card
-  className={`h-full cursor-pointer transition ${
-    selectedTrip?.title === d.title ? "ring-2 ring-emerald-500/60" : "hover:shadow-lg"
-  }`}
-  onClick={() => selectTrip(d)}
-  role="button"
-  tabIndex={0}
-  onKeyDown={(e) => (e.key === "Enter" ? selectTrip(d) : null)}
->
-</Card>
+{filteredPACKAGES.map((d) => {
+  const Icon = d.icon;
 
-    {/* IMAGE */}
-    <div className="relative max-h-44 w-full">
-      <img
-        src={d.image}
-        alt={d.title}
-        className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
-        loading="lazy"
-      />
+  return (
+    <motion.div
+      key={d.title}
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.35 }}
+      className="group"
+    >
+      <Card className="h-full overflow-hidden">
+        {/* Image */}
+        <div className="relative h-56 w-full">
+          <img
+            src={d.image}
+            alt={d.title}
+            className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
+            loading="lazy"
+          />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+          {/* subtle gradient for readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
 
-      {d.badge && (
-        <div className="absolute left-3 top-3 z-10 rounded-full bg-black/70 px-3 py-1 text-xs font-medium text-[var(--lux-ink)] backdrop-blur">
-          {d.badge}
+          {/* WHITE pill badge */}
+          {d.badge && (
+            <div className="absolute left-4 top-4 rounded-full border border-black/10 bg-white/95 px-3 py-1 text-xs font-semibold text-zinc-900 shadow-sm">
+              {d.badge}
+            </div>
+          )}
         </div>
-      )}
-    </div>
 
-    {/* CONTENT */}
-    <div className="p-6">
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <div className="text-lg font-semibold">{d.title}</div>
-          <div className="text-sm text-[var(--lux-muted)]">{d.subtitle}</div>
-        </div>
-        <Badge>From {formatUSD(d.priceFrom)}</Badge>
-      </div>
+        {/* Content */}
+        <div className="p-6">
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex items-start gap-3">
+              <div className="grid h-11 w-11 place-items-center rounded-2xl bg-zinc-100">
+                <Icon className="h-5 w-5 text-zinc-900" />
+              </div>
+              <div>
+                <div className="text-lg font-semibold text-zinc-900">{d.title}</div>
+                <div className="text-sm text-zinc-600">{d.subtitle}</div>
+              </div>
+            </div>
 
-      <div className="mt-4 flex flex-wrap gap-2">
- <span className="inline-flex items-center rounded-full bg-white px-2 py-0.5 text-[11px] font-medium text-zinc-800">
-  {d.duration}
-</span>
+            <span className="rounded-full border border-zinc-200 bg-white px-3 py-1 text-xs font-semibold text-zinc-900">
+              From {formatUSD(d.priceFrom)}
+            </span>
+          </div>
 
-{d.highlights.map((h) => (
-  <span
-    key={h}
-    className="inline-flex items-center rounded-full bg-white px-2 py-0.5 text-[11px] font-medium text-zinc-800"
-  >
-    {h}
-  </span>
-))}
-</div>
+          {/* WHITE chips with dark text */}
+          <div className="mt-4 flex flex-wrap gap-2">
+            <span className="rounded-full border border-zinc-200 bg-white px-3 py-1 text-xs font-medium text-zinc-900">
+              {d.duration}
+            </span>
 
-      <div className="mt-6 flex justify-end">
-        <a href="#contact">
-          <Button
-  variant="outline"
-  className="w-full sm:w-auto"
-  type="button"
-  onClick={() => selectTrip(d)}
->
-  Request this trip <ChevronRight className="ml-1 h-4 w-4" />
-</Button>
-        </a>
-      </div>
-    </div>
-
-  </Card>
-</motion.div>
-
-            );
-          })}
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section id="faq" className="border-t border-[var(--lux-line)] bg-white">  
-        <div className="mx-auto max-w-6xl px-4 py-12">
-          <h2 className="text-2xl font-semibold tracking-tight">FAQ</h2>
-          <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
-            {FAQ.map((f) => (
-              <Card key={f.q}>
-                <div className="p-6">
-                  <div className="text-base font-semibold text-[var(--lux-ink)]">{f.q}</div>
-                  <div className="mt-2 text-sm text-[var(--lux-muted)]">{f.a}</div>
-                </div>
-              </Card>
+            {d.highlights.map((h) => (
+              <span
+                key={h}
+                className="rounded-full border border-zinc-200 bg-white px-3 py-1 text-xs font-medium text-zinc-800"
+              >
+                {h}
+              </span>
             ))}
           </div>
+
+          <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <div className="text-sm text-zinc-600">Want this but different? We’ll tailor it.</div>
+            <a href="#contact">
+              <Button variant="outline" className="w-full sm:w-auto">
+                Request this trip <ChevronRight className="ml-1 h-4 w-4" />
+              </Button>
+            </a>
+          </div>
+        </div>
+      </Card>
+    </motion.div>
+  );
+})}
         </div>
       </section>
 
@@ -676,7 +654,7 @@ async function onSubmit(e) {
 
     <button
       type="button"
-      className="mt-3 rounded-xl border border-[var(--lux-line)] bg-white shadow-sm px-3 py-2 text-xstext-[var(--lux-ink)]  hover:bg-black/55"
+      className="mt-3 rounded-xl border border-[var(--lux-line)] bg-white shadow-sm px-3 py-2 text-xstext-[var(--lux-ink)]  hover:bg-white/80"
       onClick={() => setSelectedTrip(null)}
     >
       Clear selection
