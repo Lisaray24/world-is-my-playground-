@@ -118,6 +118,26 @@ const FAQ = [
   },
 ];
 
+const TRUST_POINTS = [
+  {
+    title: "Concierge, end-to-end planning",
+    desc: "Flights, resorts/cruises, transfers, dining, excursions, and special requests—handled in one place.",
+  },
+  {
+    title: "Supplier-paid pricing",
+    desc: "No booking fees for most clients. If we complete 2+ planning rounds without a booking, a $50 planning fee applies.",
+  },
+  {
+    title: "Preferred partner perks",
+    desc: "I look for upgrades, onboard credits, resort perks, and value-adds whenever available.",
+  },
+  {
+    title: "Real support when it matters",
+    desc: "Travel disruptions happen. You’ll have an advocate to help pivot quickly and keep the trip smooth.",
+  },
+];
+
+
 function formatUSD(n) {
   try {
     return new Intl.NumberFormat("en-US", {
@@ -498,6 +518,7 @@ async function onSubmit(e) {
   </div>
 </section>
 
+
       {/* Packages */}
       <section id="packages" className="mx-auto max-w-6xl px-4 py-12">
         <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
@@ -600,6 +621,54 @@ async function onSubmit(e) {
 })}
         </div>
       </section>
+      {/* Trust */}
+<section id="trust" className="border-t border-[var(--lux-line)] bg-white">
+  <div className="mx-auto max-w-6xl px-4 py-12">
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-center">
+      <div>
+        <div className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-3 py-1 text-xs font-medium text-zinc-900">
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
+          Trusted planning • Detroit-based • Worldwide
+        </div>
+
+        <h2 className="mt-4 text-2xl font-semibold tracking-tight text-zinc-900">
+          Travel planning that feels effortless.
+        </h2>
+
+        <p className="mt-2 text-zinc-600">
+          The World Is My Playground is concierge-style planning—built for busy travelers who want luxury, clarity, and
+          confidence from the first call to the flight home.
+        </p>
+
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+          <a href="#contact">
+            <Button className="rounded-2xl bg-emerald-600 px-5 py-2 text-white hover:bg-emerald-500 transition-colors">
+              Plan My Trip
+            </Button>
+          </a>
+
+          <a href="#packages">
+            <Button variant="outline" className="rounded-2xl px-5 py-2">
+              Explore Packages
+            </Button>
+          </a>
+        </div>
+      </div>
+
+      <div className="grid gap-4">
+        {TRUST_POINTS.map((t) => (
+          <Card key={t.title} className="bg-white">
+            <div className="p-6">
+              <div className="text-base font-semibold text-zinc-900">{t.title}</div>
+              <div className="mt-2 text-sm text-zinc-600">{t.desc}</div>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* Contact */}
       <section id="contact" className="mx-auto max-w-6xl px-4 py-12">
