@@ -83,7 +83,25 @@ const PACKAGES = [
     duration: "5–10 nights",
     highlights: ["Romance add-ons", "Surprises & upgrades", "VIP support"],
   },
+
+{
+  title: "Luxury Train Journeys",
+  subtitle: "Scenic rail travel through the world’s most beautiful regions",
+  icon: Plane, // we can change this to a train icon later if you'd like
+  priceFrom: 2499,
+  image: "/packages/luxury-train.jpg",
+  duration: "3–10 nights",
+  badge: "Bucket List",
+  highlights: [
+    "Panoramic scenic routes",
+    "Fine dining onboard",
+    "All-inclusive rail experiences",
+  ],
+},
+  
+
 ];
+
 
 const TESTIMONIALS = [
   {
@@ -286,6 +304,21 @@ const reveal = (delay = 0) => ({
     );
   }, [search]);
 
+  function selectTrip(d) {
+  setSelectedTrip(d);
+
+  setForm((prev) => ({
+    ...prev,
+    details:
+      `Selected trip: ${d.title}\n` +
+      `Duration: ${d.duration}\n` +
+      `Highlights: ${d.highlights?.join(", ")}\n\n` +
+      "Tell me what you’d like to customize:",
+  }));
+
+  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+}
+
 async function onSubmit(e) {
   e.preventDefault();
 
@@ -305,37 +338,21 @@ async function onSubmit(e) {
       headers: { Accept: "application/json" },
     });
 
-   if (res.ok) {
-  setSubmittedName(form.name);   // 👈 save name first
-  setSubmitted(true);
+    if (res.ok) {
+      setSubmittedName(form.name); // save name first
+      setSubmitted(true);
 
-  setForm({
-    name: "",
-    email: "",
-    phone: "",
-    budget: "",
-    dates: "",
-    details: "",
-  });
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        budget: "",
+        dates: "",
+        details: "",
+      });
 
-  function selectTrip(d) {
-  setSelectedTrip(d);
-
-  setForm((prev) => ({
-    ...prev,
-    details:
-      `Selected trip: ${d.title}\n` +
-      `Duration: ${d.duration}\n` +
-      `Highlights: ${d.highlights?.join(", ")}\n\n` +
-      "Tell me what you’d like to customize:",
-  }));
-
-  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-}
-
-  return;
-}
-
+      return;
+    }
 
     const data = await res.json().catch(() => ({}));
     console.error("Formspree error:", data);
@@ -609,9 +626,14 @@ async function onSubmit(e) {
           <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <div className="text-sm text-zinc-600">Want this but different? We’ll tailor it.</div>
             <a href="#contact">
-              <Button variant="outline" className="w-full sm:w-auto">
-                Request this trip <ChevronRight className="ml-1 h-4 w-4" />
-              </Button>
+              <Button
+  variant="outline"
+  className="w-full sm:w-auto"
+  type="button"
+  onClick={() => selectTrip(d)}
+>
+  Request this trip <ChevronRight className="ml-1 h-4 w-4" />
+</Button>
             </a>
           </div>
         </div>
