@@ -80,7 +80,7 @@ const PACKAGES = [
     badge: "Limited Time", 
     icon: Sparkles,
     priceFrom: 1799,
-    image: "/packages/celebrations.jpg",
+    image: "/packages/rio-luxury.jpg",
     duration: "5–10 nights",
     highlights: ["Romance add-ons", "Surprises & upgrades", "VIP support"],
   },
