@@ -12,7 +12,8 @@ import {
   Star,
   Umbrella,
   Ship,
-  Users,   // ← ADD THIS LINE
+  Users,
+  Train,   // ← ADD THIS LINE
 } from "lucide-react";
 
 import { motion, useReducedMotion } from "framer-motion";
@@ -79,7 +80,7 @@ const PACKAGES = [
     badge: "Limited Time", 
     icon: Sparkles,
     priceFrom: 1799,
-    image: "/packages/brazil-rio.jpg",
+    image: "/packages/celebrations.jpg",
     duration: "5–10 nights",
     highlights: ["Romance add-ons", "Surprises & upgrades", "VIP support"],
   },
@@ -87,7 +88,7 @@ const PACKAGES = [
 {
   title: "Luxury Train Journeys",
   subtitle: "Scenic rail travel through the world’s most beautiful regions",
-  icon: Plane, // we can change this to a train icon later if you'd like
+  icon: Train, // we can change this to a train icon later if you'd like
   priceFrom: 2499,
   image: "/packages/luxury-train.jpg",
   duration: "3–10 nights",
