@@ -491,51 +491,77 @@ async function onSubmit(e) {
       </header>
 
       {/* Hero */}
-<section className="mx-auto max-w-6xl px-4 py-12 md:py-16">
-  <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-center">
-    {/* Left: Copy */}
-    <div>
-      <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/60 px-4 py-1.5 text-xs font-medium text-[var(--lux-ink)] backdrop-blur">
-  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-  Concierge travel planning • Detroit-based • Worldwide
-</div>
+<section className="relative overflow-hidden">
+  {/* Background image */}
+  <div
+    className="absolute inset-0"
+    style={{
+      backgroundImage: "url('/hero-europe.jpg')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+  />
 
-      <h1 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
-        Luxury travel planning—without the stress.
-      </h1>
+  {/* Dark overlay for readability */}
+  <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/55 to-black/35" />
 
-      <p className="mt-4 text-[var(--lux-muted)]">
-        All-inclusive escapes, adults-only cruises, Europe favorites, and theme trips—curated and managed end-to-end.
-      </p>
+  {/* Soft bottom fade into page */}
+  <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
 
-      <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-        <a href="#packages">
-          <button className="w-full rounded-2xl bg-emerald-700 px-5 py-3 text-sm font-semibold text-[var(--lux-ink)] hover:bg-emerald-600 transition">
-            Explore Trips
-          </button>
-        </a>
+  {/* Content */}
+  <div className="relative mx-auto max-w-6xl px-4 py-24 md:py-32">
+    <div className="max-w-3xl">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-4 py-1.5 text-xs font-medium text-white backdrop-blur"
+      >
+        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+        Luxury travel planning • Detroit-based • Worldwide
+      </motion.div>
+
+      <motion.h1
+        initial={{ opacity: 0, y: 28 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9, delay: 0.1 }}
+        className="mt-6 text-4xl font-semibold tracking-tight text-white md:text-6xl"
+      >
+        Luxury travel planning —
+        <span className="block text-white/85">without the stress.</span>
+      </motion.h1>
+
+      <motion.p
+        initial={{ opacity: 0, y: 28 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9, delay: 0.2 }}
+        className="mt-5 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg"
+      >
+        Cruises, all-inclusive escapes, Europe favorites, luxury train journeys,
+        and celebration travel — curated from first inquiry to your safe return home.
+      </motion.p>
+
+      <motion.div
+        initial={{ opacity: 0, y: 28 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9, delay: 0.3 }}
+        className="mt-8 flex flex-col gap-3 sm:flex-row"
+      >
         <a href="#contact">
-          <button className="w-full rounded-2xl border border-[var(--lux-line)] bg-white px-5 py-3 text-sm font-semibold hover:bg-zinc-50 transition">
-            Request a Quote
+          <button className="rounded-2xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-500">
+            Start Planning My Trip
           </button>
         </a>
-      </div>
-    </div>
 
-    {/* Right: Quick quote card */}
-    <div className="rounded-3xl border border-[var(--lux-line)] bg-white p-6 shadow-sm">
-      <div className="text-lg font-semibold">Get a quick quote</div>
-      <div className="mt-1 text-sm text-[var(--lux-muted)]">
-        Tell us what you want—receive curated options in 24–48 hours.
-      </div>
-
-      <div className="mt-4 grid gap-3">
-        {/* (keep your existing inputs or quick fields here) */}
-      </div>
+        <a href="#packages">
+          <button className="rounded-2xl border border-white/25 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/15">
+            Explore Featured Trips
+          </button>
+        </a>
+      </motion.div>
     </div>
   </div>
 </section>
-
 
       {/* Packages */}
       <section id="packages" className="mx-auto max-w-6xl px-4 py-12">
