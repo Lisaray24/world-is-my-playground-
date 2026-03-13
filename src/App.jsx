@@ -588,34 +588,42 @@ async function onSubmit(e) {
 
   return (
     <motion.div
-      key={d.title}
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.35 }}
-      className="group"
-    >
-      <Card className="h-full overflow-hidden">
+  key={d.title}
+  initial={{ opacity: 0, y: 10 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true, amount: 0.2 }}
+  whileHover={{ y: -6 }}
+  transition={{ duration: 0.35 }}
+  className="group"
+>
+      <Card className="h-full overflow-hidden transition duration-300 group-hover:shadow-xl group-hover:shadow-zinc-300/40">
         {/* Image */}
-        <div className="relative h-56 w-full">
-          <img
-            src={d.image}
-            alt={d.title}
-            className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
-            loading="lazy"
-          />
+       <div className="relative h-56 w-full overflow-hidden">
+  <img
+    src={d.image}
+    alt={d.title}
+    className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.06]"
+    loading="lazy"
+  />
 
-          {/* subtle gradient for readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+  {/* Base gradient */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
 
-          {/* WHITE pill badge */}
-          {d.badge && (
-            <div className="absolute left-4 top-4 rounded-full border border-black/10 bg-white/95 px-3 py-1 text-xs font-semibold text-zinc-900 shadow-sm">
-              {d.badge}
-            </div>
-          )}
-        </div>
+  {/* Hover overlay */}
+  <div className="absolute inset-0 bg-black/25 opacity-0 transition duration-500 group-hover:opacity-100" />
 
+  {/* Hover label */}
+  <div className="absolute bottom-4 right-4 translate-y-2 rounded-full border border-white/30 bg-white/15 px-3 py-1 text-xs font-medium text-white opacity-0 backdrop-blur transition duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+    View Experience
+  </div>
+
+  {/* Badge */}
+  {d.badge && (
+    <div className="absolute left-4 top-4 rounded-full border border-black/10 bg-white/95 px-3 py-1 text-xs font-semibold text-zinc-900 shadow-sm">
+      {d.badge}
+    </div>
+  )}
+</div>
         {/* Content */}
         <div className="p-6">
           <div className="flex items-start justify-between gap-4">
@@ -624,7 +632,9 @@ async function onSubmit(e) {
                 <Icon className="h-5 w-5 text-zinc-900" />
               </div>
               <div>
-                <div className="text-lg font-semibold text-zinc-900">{d.title}</div>
+                <div className="text-lg font-semibold text-zinc-900 transition group-hover:text-emerald-700">
+  {d.title}
+</div>
                 <div className="text-sm text-zinc-600">{d.subtitle}</div>
               </div>
             </div>
