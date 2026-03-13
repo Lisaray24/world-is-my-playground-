@@ -106,19 +106,28 @@ const PACKAGES = [
 
 const TESTIMONIALS = [
   {
-    name: "Jordan M.",
-    text: "Everything was handled — flights, hotel, and surprises. We just showed up and enjoyed.",
-    rating: 5,
+    name: "Amanda & Chris",
+    trip: "Honeymoon Escape",
+    quote:
+      "Everything felt effortless from start to finish. We had beautiful options, clear communication, and a trip that felt truly custom to us.",
   },
   {
-    name: "Aaliyah R.",
-    text: "Perfect pacing and great communication. When weather shifted, we had a backup plan instantly.",
-    rating: 5,
+    name: "Danielle R.",
+    trip: "All-Inclusive Getaway",
+    quote:
+      "I gave a general idea of what I wanted and everything came together perfectly. It saved me hours of stress and the resort was exactly my style.",
   },
   {
-    name: "Sam K.",
-    text: "Best value on a multi-city trip. The suggestions felt personal, not generic.",
-    rating: 5,
+    name: "Marcus T.",
+    trip: "Group Celebration Trip",
+    quote:
+      "Coordinating a group trip can be chaotic, but the planning was smooth, organized, and professional. Everyone kept saying how easy it felt.",
+  },
+  {
+    name: "Elena S.",
+    trip: "Europe Adventure",
+    quote:
+      "The itinerary was thoughtful, balanced, and elevated. I felt supported before, during, and after the trip, which made all the difference.",
   },
 ];
 
@@ -264,6 +273,7 @@ export default function App() {
 };
  
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [submittedName, setSubmittedName] = useState("");
   const [selectedTrip, setSelectedTrip] = useState(null);
   const [search, setSearch] = useState("");
@@ -351,6 +361,16 @@ async function onSubmit(e) {
         dates: "",
         details: "",
       });
+
+     function nextTestimonial() {
+  setActiveTestimonial((prev) => (prev + 1) % TESTIMONIALS.length);
+}
+
+function prevTestimonial() {
+  setActiveTestimonial((prev) =>
+    prev === 0 ? TESTIMONIALS.length - 1 : prev - 1
+  );
+} 
 
       return;
     }
@@ -724,6 +744,35 @@ async function onSubmit(e) {
           </Card>
         ))}
       </div>
+    </div>
+  </div>
+</section>
+
+{/* Testimonials */}
+<section id="testimonials" className="border-t border-[var(--lux-line)] bg-white">
+  <div className="mx-auto max-w-6xl px-4 py-12">
+    <h2 className="text-2xl font-semibold tracking-tight text-zinc-900">
+      What clients are saying
+    </h2>
+    <p className="mt-2 max-w-2xl text-zinc-600">
+      Thoughtful planning, curated experiences, and luxury travel without the stress.
+    </p>
+
+    <div className="mt-8 grid gap-4 md:grid-cols-2">
+      {TESTIMONIALS.map((t) => (
+        <Card key={t.name} className="bg-white shadow-sm">
+          <div className="p-6">
+            <div className="text-lg text-emerald-600">★★★★★</div>
+            <p className="mt-4 text-lg leading-relaxed text-zinc-800">
+              “{t.quote}”
+            </p>
+            <div className="mt-6">
+              <div className="font-semibold text-zinc-900">{t.name}</div>
+              <div className="text-sm text-zinc-500">{t.trip}</div>
+            </div>
+          </div>
+        </Card>
+      ))}
     </div>
   </div>
 </section>
